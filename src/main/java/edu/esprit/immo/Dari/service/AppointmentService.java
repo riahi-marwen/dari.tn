@@ -12,4 +12,5 @@ public interface AppointmentService {
 	public List<Appointment> retrieveAllApp();
 	public Appointment updateAppointment (Appointment appointment) ;
 	public void deleteApp (String id) ;
+	public Appointment retrieveApp (String id);
 }

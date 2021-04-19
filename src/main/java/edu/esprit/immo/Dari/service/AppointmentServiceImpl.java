@@ -40,6 +40,12 @@ public class AppointmentServiceImpl implements AppointmentService{
 		appointmentRepository.deleteById(Integer.parseInt(id));
 		
 	}
+
+	@Override
+	public Appointment retrieveApp(String id) {
+		
+		return appointmentRepository.findById(Integer.parseInt(id)).orElse(null);
+	}
 	
 	
 	

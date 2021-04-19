@@ -46,6 +46,20 @@ public class AppointmentController {
 	public List<Appointment> getAppointments() {
 	List<Appointment> list = sapp.retrieveAllApp();
 	return list;
+	}
 	
+	
+	@GetMapping("/retrieve-app/{appId}")
+	
+	public Appointment retrieveAppointment (@PathVariable("appId") String idAppt)
+	{
+		return sapp.retrieveApp(idAppt);
 	}
-	}
+	
+	
+	
+
+
+
+
+}
