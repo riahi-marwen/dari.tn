@@ -1,5 +1,7 @@
 package edu.esprit.immo.Dari.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,19 @@ public class AppointmentServiceImpl implements AppointmentService{
 	public Appointment addAppointment(Appointment appointment) {
 		appointmentRepository.save(appointment);		
 		return appointment ; 
+	}
+
+	@Override
+	public List<Appointment> retrieveAllApp() {
+		
+		return (List<Appointment>) appointmentRepository.findAll() ;
+	}
+
+	public Appointment updateAppointment(Appointment appointment) {
+		
+		appointmentRepository.save(appointment);
+		
+		return null;
 	}
 	
 	
