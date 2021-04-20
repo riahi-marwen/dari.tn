@@ -2,7 +2,9 @@ package edu.esprit.immo.Dari.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,5 +35,60 @@ public class Livraison implements Serializable {
 	
 	@Enumerated(EnumType.STRING)
 	Etat etat ; 
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	public Set<Commande> commandes ;
+
+	public int getIdLivraison() {
+		return idLivraison;
+	}
+
+	public void setIdLivraison(int idLivraison) {
+		this.idLivraison = idLivraison;
+	}
+
+	public Date getDateLivraison() {
+		return dateLivraison;
+	}
+
+	public void setDateLivraison(Date dateLivraison) {
+		this.dateLivraison = dateLivraison;
+	}
+
+	public Etat getEtat() {
+		return etat;
+	}
+
+	public void setEtat(Etat etat) {
+		this.etat = etat;
+	}
+
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
+
+	public Livraison() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Livraison(int idLivraison, Date dateLivraison, Etat etat, Set<Commande> commandes) {
+		super();
+		this.idLivraison = idLivraison;
+		this.dateLivraison = dateLivraison;
+		this.etat = etat;
+		this.commandes = commandes;
+	}
+	
+	
+	
+	
+	
+	
+	
 
 }

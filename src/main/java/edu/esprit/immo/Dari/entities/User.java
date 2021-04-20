@@ -54,6 +54,22 @@ public class User implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
 	private Set<Property> properties;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	public Set<Commande> commandes ;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	public Set<Meuble> meubles ; 
+	
+	
+
+	public Set<Commande> getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Set<Commande> commandes) {
+		this.commandes = commandes;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -133,6 +149,16 @@ public class User implements Serializable {
 
 	public void setProperties(Set<Property> properties) {
 		this.properties = properties;
+		
+	}
+	
+
+	public Set<Meuble> getMeubles() {
+		return meubles;
+	}
+
+	public void setMeubles(Set<Meuble> meubles) {
+		this.meubles = meubles;
 	}
 
 	public User() {
@@ -141,7 +167,8 @@ public class User implements Serializable {
 	}
 
 	public User(int userId, String name, String lastName, int phone, String adress, String email, String password,
-			Role role, Set<Appointment> appointments, Set<Property> properties) {
+			Role role, Set<Appointment> appointments, Set<Property> properties, Set<Commande> commandes,
+			Set<Meuble> meubles) {
 		super();
 		this.userId = userId;
 		this.name = name;
@@ -153,7 +180,11 @@ public class User implements Serializable {
 		this.role = role;
 		this.appointments = appointments;
 		this.properties = properties;
+		this.commandes = commandes;
+		this.meubles = meubles;
 	}
+
+	
 
 	
 }
