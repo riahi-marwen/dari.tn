@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -39,8 +40,31 @@ public class Commande implements Serializable {
 	@Column(name = "date_cmd")
 	private Date dateCmd;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "commandes")
 	public Set<Meuble> meubles ;
+	
+	
+	@ManyToOne 
+	Livraison livraisons ;
+	
+	@ManyToOne 
+	User client ; 
+
+	public User getClient() {
+		return client;
+	}
+
+	public void setClient(User client) {
+		this.client = client;
+	}
+
+	public Livraison getLivraisons() {
+		return livraisons;
+	}
+
+	public void setLivraisons(Livraison livraisons) {
+		this.livraisons = livraisons;
+	}
 
 	public int getRef() {
 		return ref;
@@ -95,7 +119,8 @@ public class Commande implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Commande(int ref, float prixCmd, boolean reglement, int quantiteCmd, Date dateCmd, Set<Meuble> meubles) {
+	public Commande(int ref, float prixCmd, boolean reglement, int quantiteCmd, Date dateCmd, Set<Meuble> meubles,
+			Livraison livraisons, User client) {
 		super();
 		this.ref = ref;
 		this.prixCmd = prixCmd;
@@ -103,7 +128,13 @@ public class Commande implements Serializable {
 		this.quantiteCmd = quantiteCmd;
 		this.dateCmd = dateCmd;
 		this.meubles = meubles;
-	} 
+		this.livraisons = livraisons;
+		this.client = client;
+	}
+
+	
+
+	
 	
 	
 	

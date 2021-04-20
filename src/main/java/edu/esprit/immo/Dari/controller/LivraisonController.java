@@ -29,7 +29,7 @@ public class LivraisonController {
 		
 	}
 	
-	@PutMapping("updateLivraison")
+	@PutMapping("/updateLivraison")
 	public void updateLivraison (@RequestBody Livraison liv) {
 		sliv.updateLivraison(liv);
 	}

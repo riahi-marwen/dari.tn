@@ -12,6 +12,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -36,8 +37,20 @@ public class Livraison implements Serializable {
 	@Enumerated(EnumType.STRING)
 	Etat etat ; 
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "livraisons")
 	public Set<Commande> commandes ;
+	
+	
+	@ManyToOne
+	Livreur livreurs ;
+
+	public Livreur getLivreurs() {
+		return livreurs;
+	}
+
+	public void setLivreurs(Livreur livreurs) {
+		this.livreurs = livreurs;
+	}
 
 	public int getIdLivraison() {
 		return idLivraison;
@@ -76,13 +89,16 @@ public class Livraison implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Livraison(int idLivraison, Date dateLivraison, Etat etat, Set<Commande> commandes) {
+	public Livraison(int idLivraison, Date dateLivraison, Etat etat, Set<Commande> commandes, Livreur livreurs) {
 		super();
 		this.idLivraison = idLivraison;
 		this.dateLivraison = dateLivraison;
 		this.etat = etat;
 		this.commandes = commandes;
+		this.livreurs = livreurs;
 	}
+
+	
 	
 	
 	

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Meuble implements Serializable {
@@ -25,6 +26,28 @@ public class Meuble implements Serializable {
 	
 	@Column
 	public float prixMeuble ;
+	
+	@ManyToOne 
+	User users ; 
+	
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	public Commande getCommandes() {
+		return commandes;
+	}
+
+	public void setCommandes(Commande commandes) {
+		this.commandes = commandes;
+	}
+
+	@ManyToOne 
+	Commande commandes ; 
 
 	public int getIdMeuble() {
 		return idMeuble;
@@ -55,12 +78,16 @@ public class Meuble implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Meuble(int idMeuble, String description, float prixMeuble) {
+	public Meuble(int idMeuble, String description, float prixMeuble, User users, Commande commandes) {
 		super();
 		this.idMeuble = idMeuble;
 		this.description = description;
 		this.prixMeuble = prixMeuble;
+		this.users = users;
+		this.commandes = commandes;
 	}
+
+	
 	
 	
 	

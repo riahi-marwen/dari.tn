@@ -32,7 +32,7 @@ public class Livreur implements Serializable {
 	@Column 
 	public boolean disponnible ;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "livreurs")
 	public Set<Livraison> livraisons ;
 
 	public int getIdLivreur() {
