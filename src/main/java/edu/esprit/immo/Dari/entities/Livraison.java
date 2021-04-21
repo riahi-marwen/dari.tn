@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Livraison implements Serializable {
 
@@ -38,10 +40,12 @@ public class Livraison implements Serializable {
 	Etat etat ; 
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "livraisons")
+	@JsonIgnore
 	public Set<Commande> commandes ;
 	
 	
 	@ManyToOne
+	
 	Livreur livreurs ;
 
 	public Livreur getLivreurs() {

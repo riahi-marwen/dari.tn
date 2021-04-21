@@ -58,7 +58,7 @@ public class User implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	public Set<Commande> commandes ;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
 	public Set<Meuble> meubles ; 
 	
 	

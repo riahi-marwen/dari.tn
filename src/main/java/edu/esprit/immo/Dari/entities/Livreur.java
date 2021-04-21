@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Livreur implements Serializable {
 
@@ -33,6 +35,7 @@ public class Livreur implements Serializable {
 	public boolean disponnible ;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "livreurs")
+	@JsonIgnore
 	public Set<Livraison> livraisons ;
 
 	public int getIdLivreur() {
