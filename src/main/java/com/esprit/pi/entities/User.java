@@ -1,162 +1,103 @@
 package com.esprit.pi.entities;
 
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.Collections;
-@Getter
-@Setter
-@Builder
-@EqualsAndHashCode
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity(name = "users")
-public class User implements UserDetails {
-    @Id
-    @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+import java.util.Date;
 
-    @NotEmpty(message = "User's name cannot be empty.")
-    private String name;
-    @NotEmpty(message = "User's name cannot be empty.")
-    private String LastName;
+@Entity
+@Table(name = "users")
+public class User {
+	@Id
+	@Column(name = "user_id", nullable = false, updatable = false, unique = true)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	@Column(nullable = false, updatable = false, length = 50)
+	private String firstName;
+	@Column(nullable = false, updatable = false, length = 50)
+	private String lastName;
+	@Column(nullable = false, updatable = true, length = 50, unique = true)
+	private String email;
+	@Column(nullable = false, updatable = true, length = 255)
+	private String password;
+	@Column(nullable = false, updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateCreated;
+	@Column(nullable = false, updatable = false)
+	@Enumerated(EnumType.STRING)
+	private RoleType userRole;
 
-    public Long getId() {
-        return id;
-    }
+	public User() {
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public User(String firstName, String lastName, String email, String password, Date dateCreated,
+                RoleType userRole) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.dateCreated = dateCreated;
+		this.userRole = userRole;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public String getLastName() {
-        return LastName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setLastName(String lastName) {
-        LastName = lastName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public Integer getPhone() {
-        return phone;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public String getAddress() {
-        return Address;
-    }
+	public String getEmail() {
+		return email;
+	}
 
-    public void setAddress(String address) {
-        Address = address;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public UserRole getUserRole() {
-        return userRole;
-    }
+	public Date getDateCreated() {
+		return dateCreated;
+	}
 
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
 
-    public Boolean getLocked() {
-        return locked;
-    }
+	public RoleType getUserRole() {
+		return userRole;
+	}
 
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
-    }
+	public void setUserRole(RoleType userRole) {
+		this.userRole = userRole;
+	}
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    @NotNull
-    @Column(unique = true)
-    private String username;
-    @NotNull
-    @Column(unique = true)
-    private Integer phone;
-    private String Address;
-    private String password;
-    @NotNull
-    @Email
-    @Column(unique = true)
-    private String email;
-    @Builder.Default
-    private UserRole userRole = UserRole.CLIENT;
-
-    @Builder.Default
-    private Boolean locked = false;
-
-    @Builder.Default
-    private Boolean enabled = false;
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(userRole.name());
-        return Collections.singletonList(simpleGrantedAuthority);
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return !locked;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-
-    }
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", password=" + password + ", dateCreated=" + dateCreated + ", userRole=" + userRole + "]";
+	}
 }
