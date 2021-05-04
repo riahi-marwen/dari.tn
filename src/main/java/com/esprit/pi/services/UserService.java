@@ -24,6 +24,8 @@ public class UserService implements UserDetailsService {
     private  ConfirmationTokenService confirmationTokenService;
     @Autowired
     private EmailSenderService emailSenderService;
+    @Autowired
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -35,7 +37,7 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException(MessageFormat.format("User with username {0} cannot be found.", s));
         }
     }
-    void signUpUser(User user) {
+    public void signUpUser(User user) {
 
         final String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
 
@@ -46,7 +48,7 @@ public class UserService implements UserDetailsService {
         final ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
-
+        sendConfirmationMail(user.getEmail(), confirmationToken.getConfirmationToken());
     }
     public void confirmUser(ConfirmationToken confirmationToken) {
 
@@ -64,7 +66,7 @@ public class UserService implements UserDetailsService {
         final SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo(userMail);
         mailMessage.setSubject("Mail Confirmation Link!");
-        mailMessage.setFrom("<MAIL>");
+        mailMessage.setFrom("c7f79b6a12-3fcecc@inbox.mailtrap.io");
         mailMessage.setText(
                 "Thank you for registering. Please click on the below link to activate your account." + "http://localhost:8080/sign-up/confirm?token="
                         + token);

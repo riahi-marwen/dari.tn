@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Service
@@ -22,5 +24,9 @@ public class ConfirmationTokenService {
     public void deleteConfirmationToken(Long id){
 
         confirmationTokenRepository.deleteById(id);
+    }
+
+    public Optional<ConfirmationToken> findConfirmationTokensByToken(String s){
+        return confirmationTokenRepository.findConfirmationTokensByConfirmationToken(s);
     }
 }

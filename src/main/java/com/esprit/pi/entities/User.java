@@ -6,6 +6,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Collections;
 @Getter
@@ -20,7 +23,10 @@ public class User implements UserDetails {
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty(message = "User's name cannot be empty.")
     private String name;
+    @NotEmpty(message = "User's name cannot be empty.")
     private String LastName;
 
     public Long getId() {
@@ -95,24 +101,17 @@ public class User implements UserDetails {
         this.enabled = enabled;
     }
 
-    public User(Long id, String name, String lastName, String username, Integer phone, String address, String password, String email, UserRole userRole, Boolean locked, Boolean enabled) {
-        this.id = id;
-        this.name = name;
-        LastName = lastName;
-        this.username = username;
-        this.phone = phone;
-        Address = address;
-        this.password = password;
-        this.email = email;
-        this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
-    }
-
+    @NotNull
+    @Column(unique = true)
     private String username;
+    @NotNull
+    @Column(unique = true)
     private Integer phone;
     private String Address;
     private String password;
+    @NotNull
+    @Email
+    @Column(unique = true)
     private String email;
     @Builder.Default
     private UserRole userRole = UserRole.CLIENT;
