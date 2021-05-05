@@ -1,0 +1,156 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+
+
+
+
+<h:panelGroup columns="2">
+			<h:form>
+				
+				<table>
+					<tr>
+						<td><h:outputText value="date end "></h:outputText></td>
+						<td>
+						<h:inputText  type="date" value="#{rentControlle.date_end}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:inputText>
+						
+						</td>
+					</tr>				
+					
+					<tr>
+						<td><h:outputText value="date start"></h:outputText></td>
+						<td><h:inputText type="date" value="#{rentControlle.date_start}">
+								<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="name owner"></h:outputText></td>
+						<td><h:inputText value="#{rentControlle.name_owner}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="name renter "></h:outputText></td>
+						<td><h:inputText value="#{rentControlle.name_renter}"></h:inputText></td>
+					</tr>					
+					<tr>
+						<td><h:outputText value="price"></h:outputText></td>
+						<td><h:inputText value="#{rentControlle.price}"></h:inputText></td>
+					</tr>
+												
+					<tr>
+						<td><h:outputText value="Type rent "></h:outputText></td>
+						<td><h:selectOneMenu value="#{rentControlle.type_rent}">
+								<f:selectItem itemLabel="Choisir le type" itemValue="#{null}" />
+								<f:selectItems value="#{rentControllee.type_rents}" />
+							</h:selectOneMenu></td>
+					</tr>
+
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter property"
+								action="#{rentControlle.AddRent()}" />
+								 <h:commandButton value=" Mettre A jour property"
+								 action="#{rentControlle.updateRent()}"/></td>
+					</tr>
+
+				</table>
+			</h:form>
+		</h:panelGroup>
+
+
+
+
+
+
+
+
+		<!-- BEGIN : TP3 JSF List Employes -->
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+			 <div class="card">
+				<h:dataTable value="#{rentControlle.rents}" var="property"
+					border="1">
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="date end " />
+							
+						</f:facet>
+						<h:outputText value="#{property.date_end}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date start" />
+						</f:facet>
+						<h:outputText value="#{property.date_start}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="name owner" />
+						</f:facet>
+						<h:outputText value="#{name_owner}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="name renter" />
+						</f:facet>
+						<h:outputText value="#{name_renter}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value=" price" />
+						</f:facet>
+						<h:outputText value="#{property.price}" />
+					</h:column>
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type rent" />
+						</f:facet>
+						<h:outputText value="#{property.type_rent}" />
+					</h:column>
+								
+
+					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
+					<!-- BEGIN :  TP4 JSF Modifier Employé -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							
+							value="Supprimer"
+							action="#{rentControlle.RemoveRent(rentId)}" />
+							
+						<h:commandButton
+							
+							value="Afficher" 
+							action="#{rentControlle.DisplayRent(property)}"/>
+						
+					</h:column>
+					
+		
+					<!-- END :  TP4 JSF Supprimer Employé -->
+					<!-- END :  TP4 JSF Modifer Employé -->
+
+				</h:dataTable>
+			 </div>
+			</h:form>
+		</h:panelGroup>
+		<!-- END :  TP3 JSF List Employes -->
+
+	</ui:define>
+	
+	
+	
+	
+
+</ui:composition>
