@@ -1,7 +1,6 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
@@ -12,9 +11,41 @@
 
 
 
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DARI.TN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add rent </a>
+      <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add rent   </button>
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="property" action="#{employeController.navigToProperty()}" />
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{rentControlle.navigToRent()}" />
+      <h:commandButton id="btny" class="btn btn-outline-secondary" value="list of rent"   />
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{rentControlle.navigToBuy()}" /> 
+      <h:commandButton id="buyy" class="btn btn-outline-secondary" value="Rechercheeee" action="#{rentControlle.rechercheParPrix(10)}" /> 
+      
+      <h:commandButton id="recherche" class="btn btn-outline-secondary" value="recherche" action="#{fonctionControlle.recherchee()}"/> 
+      
+      	
+		
+    </div>
+  </div>
+</nav>
+
+</h:form>
+
+
+
+
 
 <h:panelGroup columns="2">
 			<h:form>
+			
 				
 				<table>
 					<tr>
@@ -58,13 +89,21 @@
 						<td colspan="2"><h:commandButton value="Ajouter property"
 								action="#{rentControlle.AddRent()}" />
 								 <h:commandButton value=" Mettre A jour property"
-								 action="#{rentControlle.updateRent()}"/></td>
+								 action="#{rentControlle.updateRent()}"/>
+								 </td>
 					</tr>
+					
+					
 
 				</table>
 			</h:form>
 		</h:panelGroup>
+ 
 
+
+
+			
+		
 
 
 
@@ -96,13 +135,13 @@
 						<f:facet name="header">
 							<h:outputText value="name owner" />
 						</f:facet>
-						<h:outputText value="#{name_owner}" />
+						<h:outputText value="#{property.name_owner}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="name renter" />
 						</f:facet>
-						<h:outputText value="#{name_renter}" />
+						<h:outputText value="#{property.name_renter}" />
 					</h:column>
 					<h:column>
 						<f:facet name="header">
@@ -128,7 +167,7 @@
 						<h:commandButton
 							
 							value="Supprimer"
-							action="#{rentControlle.RemoveRent(rentId)}" />
+							action="#{rentControlle.RemoveRent(property.rentId)}" />
 							
 						<h:commandButton
 							

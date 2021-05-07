@@ -54,6 +54,14 @@ public class ControllerEmployeImpl  {
 		return navigateTo;	
 		
 	}
+	
+	public String  navigTobuy()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/buy.xhtml";
+		return navigateTo;	
+		
+	}
 
 	public String doLogin() {
 

@@ -34,6 +34,18 @@ public class RentcontrollerJsf
 	private String name_owner ; 
 	private TypeRent type_rent ;
 	
+	/* recherche par prix */
+	private List<Rent> RehchercheRent; 
+	
+	public String  rechercheParPrix(float price )
+	{
+	
+		this.setRents(rentService.getRentlBytotalfinalsup(price));
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/login.xhtml";
+		return navigateTo;
+	}
+
 	private int rentId; 
 	
 	public int getRentId() {
@@ -86,19 +98,35 @@ public class RentcontrollerJsf
 		this.setRentId(rent.getId_Rent());
 	}
 	
-	public String  navigToRent()
+	public String navigToRent()
 	{
 		String navigateTo = "null";
 		navigateTo = "/pages/admin/rent.xhtml";
 		return navigateTo;	
 		
 	}
+	public String navigToRecherch()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/rent.xhtml";
+		return navigateTo;
+	}
+	
+	
+	public String navigToBuy()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/buy.xhtml";
+	 	return navigateTo;		
+	}
+
 	
 	public void updateRent ()
 	{
 		rentService.AjouterRent(new Rent(rentId, date_start, date_end, price, name_renter, name_owner, type_rent));
 
 	}
+	
 	
 	
 	
@@ -153,6 +181,7 @@ public class RentcontrollerJsf
 	public void setType_rent(TypeRent type_rent) {
 		this.type_rent = type_rent;
 	} 
+	
 	
 	
 	

@@ -17,7 +17,7 @@ public interface IRentService
 	public void mettreAjourTitleByWarrantyId(float  price ,   int Id_Rent) ; 
 	public List<Rent> getallRentbetwendate(Date d1, Date d2); 
 	public List<Rent> findByDateRent(Date d1); 
-	public List<Rent> getRentlBytotalfinalsup(int a );
+	public List<Rent> getRentlBytotalfinalsup(float a );
 	public int retournerListRent(); 
 	public List<Object[]> getMoyenRentJour(int a, int m, int j);
 	public List<Object[]> getMoyenRentMonth( int a, int m); 

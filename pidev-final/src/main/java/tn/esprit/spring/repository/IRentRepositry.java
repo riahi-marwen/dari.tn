@@ -25,7 +25,7 @@ public interface IRentRepositry extends CrudRepository<Rent, Integer>
 	public List<Rent> findByDatereglement(@Param("dreglmt") Date datereglmt);
 	
 	@Query("select DISTINCT b from Rent b where b.price >= :pricee")
-	public List<Rent> getRentlBytotalfinalsup(@Param("pricee") Integer pricee );
+	public List<Rent> getRentlBytotalfinalsup(@Param("pricee") float pricee );
 	
 	/* retourner le nombre de Rent */
 	@Query("select count(p) from Rent p ")

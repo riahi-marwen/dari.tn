@@ -78,7 +78,7 @@ public class RentRestController
 	}
 	// aficher la list de rent superieur a 1000 dt 
 	@GetMapping(value = "/getrentsup1000/{a}")
-	public List<Rent> getRentsup(@PathVariable("a") int a) {
+	public List<Rent> getRentsup(@PathVariable("a") float a) {
 		return irent.getRentlBytotalfinalsup(a); 
 	}
 	

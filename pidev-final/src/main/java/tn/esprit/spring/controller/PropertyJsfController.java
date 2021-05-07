@@ -31,11 +31,44 @@ public class PropertyJsfController
 	private int nbVue ; 
 	private int surface ; 
 	private int nbPiece ; 
+	private int  test  ; 
 	
 	
+	
+	
+	
+	public int getTest() {
+		return test;
+	}
+
+
+	public void setTest(int test) {
+		this.test = test;
+	}
 	private int propertyIdToBeUpdated; 
 	
+	private List<Property> pts; 
 	
+	
+	public List<Property> getPts() {
+		return pts;
+	}
+
+
+	public void setPts(List<Property> pts) {
+		this.pts = pts;
+	}
+
+
+	public String rechercheProperty()
+	{
+		this.setPts(propertyService.triNbVue());
+		this.setTest(1);
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/filter.xhtml";
+		return navigateTo;	
+		
+	}
 	
 	
 	public int getPropertyIdToBeUpdated() {
@@ -61,8 +94,15 @@ public class PropertyJsfController
 		return "null"; 
 	}
 
-	public List<Property> getPropertys() {
-		return propertyService.getAllContrats(); 
+	public List<Property> getPropertys() 
+	{
+		if (this.getTest()==1)
+		{
+			this.getPts(); 
+		}
+	
+			return propertyService.getAllContrats(); 
+			
 	
 	}
 
@@ -71,7 +111,12 @@ public class PropertyJsfController
 	{
 		
 		propertyService.deletePropertyById(propertyId); 	 
-	} 
+	}
+	/* recherche par prix */
+	public void RechercheParPrix()
+	{
+		
+	}
 	
 	
 	public void displayProperty (Property property)

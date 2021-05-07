@@ -53,7 +53,7 @@ public class IRentImpl implements IRentService
 		return iRent.findByDatereglement(d1); 
 	}
 	/* retourner list de rent sup en 1000 */
-	public List<Rent> getRentlBytotalfinalsup(int a )
+	public List<Rent> getRentlBytotalfinalsup(float a )
 	{
 		return iRent.getRentlBytotalfinalsup(a); 
 	}

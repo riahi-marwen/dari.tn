@@ -42,6 +42,14 @@ public class Buy implements Serializable
 		this.price = price;
 	}
 	
+	
+	public Buy(int id_buy, String date, String name_buyer, float price) {
+		super();
+		this.id_buy = id_buy;
+		this.date = date;
+		Name_buyer = name_buyer;
+		this.price = price;
+	}
 	public Buy(String date, String name_buyer, float price) {
 		super();
 		this.date = date;
