@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -18,18 +19,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private  BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    public void configure(WebSecurity web) {
+        web.ignoring()
+                // ignore all URLs that start with /resources/ or /static/
+                .antMatchers("/resources/**", "/static/**");
+    }
 
-        http
-                .authorizeRequests()
-                .antMatchers("/sign-up/**", "/sign-in/**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                // CUSTOMER & ADMIN
+                .antMatchers("/").permitAll()
+                .antMatchers("/Login/singup.jsf").permitAll()
+
                 .and()
-                .formLogin()
-                .loginPage("/sign-in")
-                .permitAll();
+                // Login
+                .formLogin().loginPage("/Login/singin.jsf").permitAll();
+        		http.csrf().disable();
+//			.usernameParameter("email")
+//			.passwordParameter("password")
     }
 
     @Autowired

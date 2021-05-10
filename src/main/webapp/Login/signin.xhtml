@@ -76,7 +76,7 @@
 											width="15px" height="15px" /></i> Your Name :
 									</h5>
 									<h:inputText type="text" name="name" 
-										placeholder="Your Name" value="#{UsersController.login}"/>
+										placeholder="Your Name" value="#{UserController.userform.username}"/>
 								</div>
 
 								<div class="form-group">
@@ -85,7 +85,7 @@
 											width="15px" height="15px" /></i> You Password :
 									</h5>
 									<h:inputText type="password" name="pass" 
-										placeholder="Password" value="#{UsersController.password}"/>
+										placeholder="Password" value="#{UserController.userform.password}"/>
 								</div>
 
 								<div class="form-group">
@@ -96,7 +96,7 @@
 
 								<div class="form-group form-button">
 								<p:commandButton class="form-submit" value="Log in" 
-										 action="#{UsersController.doLogin()}" />
+										 action="#{UserController.doLogin()}" />
 									
 								</div>
 							</form>

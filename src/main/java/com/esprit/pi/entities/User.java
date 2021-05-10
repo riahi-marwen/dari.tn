@@ -1,14 +1,19 @@
 package com.esprit.pi.entities;
 
 import lombok.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.esprit.pi.payload.UserForm;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Collections;
 @Getter
@@ -18,20 +23,14 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
-public class User implements UserDetails {
-    /**
+public class User implements UserDetails,Serializable {
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+	@Transient
+	private boolean active;
 	@Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,7 +40,58 @@ public class User implements UserDetails {
     private String name;
     @NotEmpty(message = "User's name cannot be empty.")
     private String LastName;
+    @NotNull
+    @Column(unique = true)
+    private String username;
+    @NotNull
+    @Column(unique = true)
+    private Integer phone;
+    private String Address;
+    @NotNull
+    @Column(unique = true)
+    private String password;
+    @NotNull
+    @Email
+    @Column(unique = true)
+    private String email;
+    @Builder.Default
+    private UserRole userRole = UserRole.CLIENT;
 
+    @Builder.Default
+    private Boolean locked = false;
+ 
+    @Builder.Default
+    private Boolean enabled = false;
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public boolean isActive() {
+		return active;
+	}
+
+	public User(UserForm userform) {
+		this.name = userform.getName();
+		LastName = userform.getLastName();
+		this.username = userform.getUsername();
+		this.Address = userform.getAddress();
+		this.password = userform.getPassword();
+		this.email = userform.getEmail();
+		this.userRole = UserRole.CLIENT;
+		this.phone = userform.getPhone();
+		this.active = false;
+		this.locked = false;
+		this.active = false;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
     public Long getId() {
         return id;
     }
@@ -113,27 +163,6 @@ public class User implements UserDetails {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-
-    @NotNull
-    @Column(unique = true)
-    private String username;
-    @NotNull
-    @Column(unique = true)
-    private Integer phone;
-    private String Address;
-    private String password;
-    @NotNull
-    @Email
-    @Column(unique = true)
-    private String email;
-    @Builder.Default
-    private UserRole userRole = UserRole.CLIENT;
-
-    @Builder.Default
-    private Boolean locked = false;
-
-    @Builder.Default
-    private Boolean enabled = false;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

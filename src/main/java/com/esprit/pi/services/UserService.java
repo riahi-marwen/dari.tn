@@ -38,12 +38,14 @@ public class UserService implements UserDetailsService {
     }
     public void signUpUser(User user) {
 
+        System.out.println("test1");
         final String encryptedPassword = bCryptPasswordEncoder.encode(user.getPassword());
 
+        System.out.println("test2");
         user.setPassword(encryptedPassword);
+        userRepository.save(user);
 
-        final User createdUser = userRepository.save(user);
-
+        System.out.println("test3");
         final ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
@@ -57,8 +59,6 @@ public class UserService implements UserDetailsService {
 
         userRepository.save(user);
 
-        confirmationTokenService.deleteConfirmationToken(confirmationToken.getId());
-
     }
     public void sendConfirmationMail(String userMail, String token) {
 
@@ -67,9 +67,17 @@ public class UserService implements UserDetailsService {
         mailMessage.setSubject("Mail Confirmation Link!");
         mailMessage.setFrom("c7f79b6a12-3fcecc@inbox.mailtrap.io");
         mailMessage.setText(
-                "Thank you for registering. Please click on the below link to activate your account." + "http://localhost:8080/sign-up/confirm?token="
+                "Thank you for registering. Please click on the below link to activate your account." + "http://localhost:8081/Login/confirm?token="
                         + token);
 
         emailSenderService.sendEmail(mailMessage);
+    }
+    public User authenticate(String login,String password) {
+    	User user  = userRepository.findByUsernameAndPassword(login,password);
+    	if(user!=null && user.isEnabled() == true) {
+    		return user;
+    	}
+    	else
+    		return null;
     }
 }

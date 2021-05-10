@@ -11,9 +11,9 @@
 			<b>Connexion</b>
 			<h:panelGrid columns="2">
 				<h:outputText value="Login (Email)" />
-				<h:inputText value="#{UsersController.login}" />
+				<h:inputText value="#{UserController.userform.username}" />
 				<h:outputText value="Mot de passe" />
-				<h:inputSecret value="#{UsersController.password}" />
+				<h:inputSecret value="#{UserController.userform.password}" />
 				<h:commandButton id="btn" value="Connexion"
 					action="#{UsersController.doLogin()}" />
 				<h:message for="btn" />
