@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: riadh
+Build-Jdk: 15.0.2
+Implementation-Title: dari
+Implementation-Version: 1.0
+Implementation-Vendor-Id: tn.esprit.spring.pi
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/dari
+Created-By: Maven Integration for Eclipse
+
