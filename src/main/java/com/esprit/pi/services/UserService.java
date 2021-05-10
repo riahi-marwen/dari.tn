@@ -24,8 +24,7 @@ public class UserService implements UserDetailsService {
     private  ConfirmationTokenService confirmationTokenService;
     @Autowired
     private EmailSenderService emailSenderService;
-    @Autowired
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
