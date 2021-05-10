@@ -15,13 +15,17 @@ import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 @Scope(value = "session")
-@Controller(value = "UserController")
-@ELBeanName(value = "UserController")
+@Controller(value = "UsersController")
+@ELBeanName(value = "UsersController")
 @Join(path = "/", to = "/Login/signin.jsf")
 @AllArgsConstructor
 public class UserController {
@@ -29,7 +33,8 @@ public class UserController {
     private  UserService userService;
 	@Autowired
     private  ConfirmationTokenService confirmationTokenService;
-	private UserForm userform = new UserForm();
+	@Autowired
+	private UserForm userform ;
 	private boolean active;
     final static Logger logger = Logger.getLogger(UserController.class);
 	public UserService getUserService() {
@@ -65,10 +70,14 @@ public class UserController {
 	}
 	private User authenticatedUser;
 	public String doLogin() {
-		String navigateTo = "null";
+		logger.debug("test2");
+		String navigateTo = "/Login/signup.jsf";
+		logger.debug("Ya riaaaaaaaaaaaaaaaadeh");
+		logger.debug(userform.getPassword());
 		authenticatedUser = userService.authenticate(userform.getUsername(),userform.getPassword());
 		if (authenticatedUser != null && authenticatedUser.getUserRole() == UserRole.CLIENT) {
 
+		logger.error("User ya riadh");
 			navigateTo = "/Vente/affichevente.xhtml?faces-redirect=true";
 			authenticatedUser.setActive(true);
 		}
@@ -96,13 +105,10 @@ public class UserController {
 		return "/Login/signin.xhtml?faces-redirect=true";
 	}
 
-	public String addUsers() {
-		logger.error("test2");
-		return "/Login/signin.xhtml?faces-redirect=true";
-
-	}
 	public String signup() {
-				return "/Login/signin.xhtml?faces-redirect=true";
+		User user= new User(userform);
+		userService.signUpUser(user);
+		return "/Login/signin.xhtml?faces-redirect=true";
 
 	}
 	public UserForm getUserform() {
@@ -111,4 +117,13 @@ public class UserController {
 	public void setUserform(UserForm userform) {
 		this.userform = userform;
 	}
+    @GetMapping("/sign-up/confirm")
+    String confirmMail(@RequestParam("token") String token) {
+
+        Optional<ConfirmationToken> optionalConfirmationToken = confirmationTokenService.findConfirmationTokensByToken(token);
+
+        optionalConfirmationToken.ifPresent(userService::confirmUser);
+
+        return "redirect:/Login/signin.jsf?faces-redirect=true";
+    }
 }

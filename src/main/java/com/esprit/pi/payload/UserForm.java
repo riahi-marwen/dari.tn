@@ -1,19 +1,12 @@
 package com.esprit.pi.payload;
 
 
-import java.io.Serializable;
-
 import org.springframework.stereotype.Component;
 
 import com.esprit.pi.entities.UserRole;
 @Component
-public class UserForm implements Serializable {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 8613248342378617150L;
-
-	private Long id;
+public class UserForm {
+    private Long id;
 
     private String name;
     private String LastName;
@@ -26,7 +19,6 @@ public class UserForm implements Serializable {
     private String email;
     private UserRole userRole = UserRole.CLIENT;
     private Boolean locked = false;
-
     private Boolean enabled = false;
 
 	public Long getId() {

@@ -14,39 +14,41 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 @AllArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private  UserService userService;
-    @Autowired
-    private  BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Override
-    public void configure(WebSecurity web) {
-        web.ignoring()
-                // ignore all URLs that start with /resources/ or /static/
-                .antMatchers("/resources/**", "/static/**");
-    }
+	  @Autowired
+	    private UserService userDetailsService;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                // CUSTOMER & ADMIN
-                .antMatchers("/").permitAll()
-                .antMatchers("/Login/singup.jsf").permitAll()
 
-                .and()
-                // Login
-                .formLogin().loginPage("/Login/singin.jsf").permitAll();
-        		http.csrf().disable();
-//			.usernameParameter("email")
-//			.passwordParameter("password")
-    }
+	    @Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.userDetailsService(userDetailsService).passwordEncoder(getPasswordEncoder());
+	    }
 
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userService)
-                .passwordEncoder(bCryptPasswordEncoder);
-    }
-    @Bean
-    public BCryptPasswordEncoder getPasswordEncoder() {
-        return new BCryptPasswordEncoder(14);
-    }
+	    @Override
+	    public void configure(WebSecurity web) {
+	        web.ignoring()
+	                // ignore all URLs that start with /resources/ or /static/
+	                .antMatchers("/resources/**", "/static/**,/webapp/**");
+	    }
+
+	    @Override
+	    protected void configure(HttpSecurity http) throws Exception {
+	        http.authorizeRequests()
+	                // CUSTOMER & ADMIN
+	                .antMatchers("/").permitAll()
+	                .antMatchers("/Login/signup.jsf").permitAll()
+	                .antMatchers("/Login/signin.jsf").permitAll()
+	                .and()
+	                // Login
+	                .formLogin().loginPage("/Login/signin.jsf")
+				.usernameParameter("username")
+				.passwordParameter("password")
+	                .and()
+	                .csrf().disable();
+	                // Logout
+	    }
+
+	    @Bean
+	    public BCryptPasswordEncoder getPasswordEncoder() {
+	        return new BCryptPasswordEncoder(14);
+	    }
 }

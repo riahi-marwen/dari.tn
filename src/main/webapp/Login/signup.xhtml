@@ -69,7 +69,7 @@
 											width="15px" height="15px" /></i> Your Name :
 									</h5>
 									<h:inputText type="text" name="name" id="name"
-										placeholder="Your Name" value="#{UserController.userform.name}" />
+										placeholder="Your Name" value="#{UsersController.userform.name}" />
 								</div>
 								<div class="form-group">
 									<h5>
@@ -77,7 +77,15 @@
 											width="15px" height="15px" /></i> Your Last Name :
 									</h5>
 									<h:inputText type="text" name="lastname" id="lastname"
-										placeholder="Your Name" value="#{UserController.userform.lastName}" />
+										placeholder="Your Name" value="#{UsersController.userform.lastName}" />
+								</div>
+								<div class="form-group">
+									<h5>
+										<i><img src="images/personne.png" alt="sing up image"
+											width="15px" height="15px" /></i> username :
+									</h5>
+									<h:inputText type="text" name="username" id="username"
+										placeholder="Your Name" value="#{UsersController.userform.username}" />
 								</div>
 
 								<div class="form-group">
@@ -97,6 +105,15 @@
 									<h:inputSecret  type="password" name="pass" id="pass"
 										placeholder="Password" value="#{UsersController.userform.password}" />
 								</div>
+								<div class="form-group">
+									<h5>
+										<i><img src="images/password.png" alt="sing up image"
+											width="15px" height="15px" /></i> Phone :
+									</h5>
+									<h:inputText  type="phone" name="phone" id="phone"
+										placeholder="Password" value="#{UsersController.userform.phone}" />
+								</div>
+
 
 								<div class="form-group">
 									<h5>
@@ -106,10 +123,10 @@
 									<div class="dropdown">
 
 										<h:selectOneMenu name="one" class="dropdown-select"
-											value="#{UserController.userform.userRole}">
+											value="#{UsersController.userform.userRole}">
 											<f:selectItem itemLabel="Choose your role"
 												itemValue="#{null}" />
-											<f:selectItems value="#{UserController.userRoles}" />
+											<f:selectItems value="#{UsersController.userRoles}" />
 
 										</h:selectOneMenu>
 									</div>
@@ -125,7 +142,7 @@
 
 								<div class="form-group form-button">
 									<p:commandButton class="form-submit" value="Sing up"
-										action="#{UserController.signup()}" />
+										action="#{UsersController.signup()}" />
 
 								</div>
 							</h:form>

@@ -10,10 +10,6 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class ConfirmationToken {
 
     @Id
@@ -58,6 +54,16 @@ public class ConfirmationToken {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public ConfirmationToken(Long id, String confirmationToken, LocalDate createdDate, User user) {
+		this.id = id;
+		this.confirmationToken = confirmationToken;
+		this.createdDate = createdDate;
+		this.user = user;
+	}
+
+	public ConfirmationToken() {
 	}
 
 	public ConfirmationToken(User user) {

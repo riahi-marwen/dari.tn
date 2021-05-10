@@ -73,7 +73,9 @@ public class UserService implements UserDetailsService {
         emailSenderService.sendEmail(mailMessage);
     }
     public User authenticate(String login,String password) {
-    	User user  = userRepository.findByUsernameAndPassword(login,password);
+
+        final String encryptedPassword = bCryptPasswordEncoder.encode(password);
+    	User user  = userRepository.getUsersByEmailAndPassword(login, encryptedPassword);
     	if(user!=null && user.isEnabled() == true) {
     		return user;
     	}

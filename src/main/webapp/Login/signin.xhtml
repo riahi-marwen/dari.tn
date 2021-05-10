@@ -67,7 +67,7 @@
 
 						<div class="signin-form">
 
-							<h2 class="form-title">Sign up</h2>
+							<h2 class="form-title">Sign in</h2>
 							<form method="post" class="register-form" id="login-form">
 
 								<div class="form-group">
@@ -76,7 +76,7 @@
 											width="15px" height="15px" /></i> Your Name :
 									</h5>
 									<h:inputText type="text" name="name" 
-										placeholder="Your Name" value="#{UserController.userform.username}"/>
+										placeholder="Your Name" value="#{UsersController.userform.username}"/>
 								</div>
 
 								<div class="form-group">
@@ -84,8 +84,9 @@
 										<i><img src="images/password.png" alt="sing up image"
 											width="15px" height="15px" /></i> You Password :
 									</h5>
-									<h:inputText type="password" name="pass" 
-										placeholder="Password" value="#{UserController.userform.password}"/>
+									<h:inputSecret type="password" name="pass" 
+
+										placeholder="Password" value="#{UsersController.userform.password}"/>
 								</div>
 
 								<div class="form-group">
@@ -96,7 +97,7 @@
 
 								<div class="form-group form-button">
 								<p:commandButton class="form-submit" value="Log in" 
-										 action="#{UserController.doLogin()}" />
+										 action="#{UsersController.doLogin()}" />
 									
 								</div>
 							</form>
