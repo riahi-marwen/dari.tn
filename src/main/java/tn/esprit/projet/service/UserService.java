@@ -9,7 +9,7 @@ import tn.esprit.projet.modal.User;
 import tn.esprit.projet.repository.UserRepository;
 
 @Service
-public class UserService {
+public class UserService implements IUserService{
 	@Autowired
 	private UserRepository userRepository;
 
@@ -67,6 +67,11 @@ public class UserService {
 
 	public User findUserById(long id) {
 		return this.userRepository.findById(id).get();
+	}
+
+	@Override
+	public User authenticate(String login, String password) {
+		return userRepository.getUserByEmailAndPassword(login, password);
 	}
 
 }

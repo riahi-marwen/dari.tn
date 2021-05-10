@@ -1,6 +1,8 @@
 package tn.esprit.projet.modal;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,7 +22,29 @@ public class User {
 	private String userName;
 	private String password;
 	private String location;
-	private String role;
+	//private String role;
+	@Enumerated(EnumType.STRING)
+	//@NotNull
+	private Role role;
+	private boolean actif;
+	
+	
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public boolean isActif() {
+		return actif;
+	}
+
+	public void setActif(boolean actif) {
+		this.actif = actif;
+	}
 
 	public String getBirthday() {
 		return birthday;
@@ -86,13 +110,7 @@ public class User {
 		this.location = location;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
+	
 
 	public Long getId() {
 		return id;
