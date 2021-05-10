@@ -37,6 +37,11 @@ public class IPropertyServiceImpl implements IPropertyService{
 	public List<Property> triNbVue() {
 		return (proprep.getTriNbvueProperty()); 
 	}
+	/*tri par price */
+	public List<Property> triPrice()
+	{
+		return (proprep.getTripriceProperty());
+	}
 	@Override
 	/* affiche  property by id */
 	public Property affichePropertyById(int Id_Property) {
@@ -56,6 +61,12 @@ public class IPropertyServiceImpl implements IPropertyService{
 	}
 	/* incrémente le nb de vue */
 	public void incrementeVue(int Id_Property) 
+	{
+		Property property = proprep.findById(Id_Property).get();
+		property.setNbVue(property.getNbVue()+1 );
+		proprep.save(property);
+	}
+	public void incrementeNbVue(  int Id_Property) 
 	{
 		Property property = proprep.findById(Id_Property).get();
 		property.setNbVue(property.getNbVue()+1 );

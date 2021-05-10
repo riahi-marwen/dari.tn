@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/template/template.xhtml">
 
-	<ui:param name="page_name" value="Accueil" />
+	<ui:param name="page_name" value="statistique" />
 
 	<ui:define name="content">
 
@@ -13,7 +13,7 @@
 
 <h:form>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">DARI.TN-----users</a>
+  <a class="navbar-brand" href="#">DARI.TN</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -24,11 +24,10 @@
       <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
       <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add rent   </button>
       <h:commandButton id="btn" class="btn btn-outline-secondary" value="property" action="#{employeController.navigToProperty()}" />
-      <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{rentControlle.navigToRent()}" />
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{statistiqueControlle.navigToRent()}" />
       <h:commandButton id="btny" class="btn btn-outline-secondary" value="list of rent"   />
-      <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{rentControlle.navigToBuy()}" /> 
-      <h:commandButton id="buyy" class="btn btn-outline-secondary" value="Rechercheeee" action="#{rentControlle.rechercheParPrix(10)}" /> 
-      
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{statistiqueControlle.navigToBuy()}" /> 
+      <h:commandButton id="buyy" class="btn btn-outline-secondary" value=" statistique of rent " action="#{statistiqueControlle.rechercheParPrix(10)}" /> 
       <h:commandButton id="recherche" class="btn btn-outline-secondary" value="recherche" action="#{fonctionControlle.recherchee()}"/> 
       
       	
@@ -39,58 +38,68 @@
 
 </h:form>
 
+<!-- END :  navbar -->
 
-
-
-
-<h:panelGroup columns="2">
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<!-- END :  recherche  -->
+<h:panelGroup columns="2" class="center">
 			<h:form>
 			
+			
 				
-				<table>
+				<table class="center">
+					
+					
 					<tr>
-						<td><h:outputText value="date end "></h:outputText></td>
+						<td><h:outputText value="  average rent per year  "></h:outputText></td>
 						<td>
-						<h:inputText  type="date" value="#{rentControlle.date_end}">
-						<f:convertDateTime pattern="dd-MM-yyyy"/>
+						<h:inputText  type="date" value="#{statistiqueControlle.year}">
 						</h:inputText>
 						
 						</td>
 					</tr>				
-					
-					<tr>
-						<td><h:outputText value="date start"></h:outputText></td>
-						<td><h:inputText type="date" value="#{rentControlle.date_start}">
-								<f:convertDateTime pattern="dd-MM-yyyy"/>
-						</h:inputText></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="name owner"></h:outputText></td>
-						<td><h:inputText value="#{rentControlle.name_owner}"></h:inputText></td>
-					</tr>
-					<tr>
-						<td><h:outputText value="name renter "></h:outputText></td>
-						<td><h:inputText value="#{rentControlle.name_renter}"></h:inputText></td>
-					</tr>					
-					<tr>
-						<td><h:outputText value="price"></h:outputText></td>
-						<td><h:inputText value="#{rentControlle.price}"></h:inputText></td>
-					</tr>
-												
-					<tr>
-						<td><h:outputText value="Type rent "></h:outputText></td>
-						<td><h:selectOneMenu value="#{rentControlle.type_rent}">
-								<f:selectItem itemLabel="Choisir le type" itemValue="#{null}" />
-								<f:selectItems value="#{rentControllee.type_rents}" />
-							</h:selectOneMenu></td>
-					</tr>
 
 					<tr>
-						<td colspan="2"><h:commandButton value="Ajouter property"
-								action="#{rentControlle.AddRent()}" />
-								 <h:commandButton value=" Mettre A jour property"
-								 action="#{rentControlle.updateRent()}"/>
-								 </td>
+						<td colspan="2">
+						
+						<h:commandButton value="moyenne par année" action="#{statistiqueControlle.Average(statistiqueControlle.year)}" />
+						<h:outputText value="#{statistiqueControlle.averageAN}"></h:outputText>
+							 
+						</td>
+					</tr>
+					
+					
+					
+					
+					
+		          <tr>
+						<td><h:outputText value="  average rent per year , month  "></h:outputText></td>
+						<td>
+						<h:outputText value=" year"></h:outputText>
+						<h:inputText  value="#{statistiqueControlle.year}">		</h:inputText>
+						</td>
+						<td>
+						<h:outputText value="month"></h:outputText>
+						<h:inputText  value="#{statistiqueControlle.year}">	    </h:inputText>
+						</td>
+					</tr>				
+
+					<tr>
+						<td colspan="2">
+						
+						<h:commandButton value="moyenne par année" action="#{statistiqueControlle.Average(statistiqueControlle.year)}" />
+						<h:outputText value="#{statistiqueControlle.averageAN}"></h:outputText>
+							 
+						</td>
 					</tr>
 					
 					
@@ -115,8 +124,9 @@
 		<br />
 		<h:panelGroup columns="2">
 			<h:form>
+			
 			 <div class="card">
-				<h:dataTable value="#{rentControlle.rents}" var="property"
+				<h:dataTable value="#{statistiqueControlle.rents}" var="property"
 					border="1">
 					<h:column >
 						<f:facet name="header">
@@ -167,12 +177,12 @@
 						<h:commandButton
 							
 							value="Supprimer"
-							action="#{rentControlle.RemoveRent(property.rentId)}" />
+							action="#{statistiqueControlle.RemoveRent(property.rentId)}" />
 							
 						<h:commandButton
 							
 							value="Afficher" 
-							action="#{rentControlle.DisplayRent(property)}"/>
+							action="#{statistiqueControlle.DisplayRent(property)}"/>
 						
 					</h:column>
 					
@@ -189,7 +199,7 @@
 	</ui:define>
 	
 	
-
+	
 	
 
 </ui:composition>

@@ -9,8 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import tn.esprit.spring.entities.Employe;
-
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.repository.EmployeRepository;
 
 
@@ -22,19 +21,19 @@ public class EmployeServiceImpl implements IEmployeService {
 	
 
 	@Override
-	public Employe authenticate(String login, String password) {
+	public User authenticate(String login, String password) {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
 	}
 
 	@Override
-	public int addOrUpdateEmploye(Employe employe) {
+	public int addOrUpdateEmploye(User employe) {
 		employeRepository.save(employe);
 		return employe.getId();
 	}
 
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		Employe employe = employeRepository.findById(employeId).get();
+		User employe = employeRepository.findById(employeId).get();
 		employe.setEmail(email);
 		employeRepository.save(employe);
 
@@ -43,13 +42,13 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 	public String getEmployePrenomById(int employeId) {
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+		User employeManagedEntity = employeRepository.findById(employeId).get();
 		return employeManagedEntity.getPrenom();
 	}
 	 
 	public void deleteEmployeById(int employeId)
 	{
-		Employe employe = employeRepository.findById(employeId).get();
+		User employe = employeRepository.findById(employeId).get();
 		employeRepository.delete(employe);
 	}
 
@@ -65,8 +64,8 @@ public class EmployeServiceImpl implements IEmployeService {
 
 
 
-	public List<Employe> getAllEmployes() {
-		return (List<Employe>) employeRepository.findAll();
+	public List<User> getAllEmployes() {
+		return (List<User>) employeRepository.findAll();
 	}
 
 }

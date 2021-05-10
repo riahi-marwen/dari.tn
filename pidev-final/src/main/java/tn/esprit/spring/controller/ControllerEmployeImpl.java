@@ -14,11 +14,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 
-import tn.esprit.spring.entities.Employe;
 
 
 import tn.esprit.spring.entities.Role;
-
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.services.IEmployeService;
 
 
@@ -35,7 +34,7 @@ public class ControllerEmployeImpl  {
 	private String password; 
 	private Boolean loggedIn;
 
-	private Employe authenticatedUser = null; 
+	private User authenticatedUser = null; 
 	private String prenom; 
 	private String nom; 
 	private String email;
@@ -43,7 +42,7 @@ public class ControllerEmployeImpl  {
 	private Role role;  
 	public Role[] getRoles() { return Role.values(); }
 
-	private List<Employe> employes; 
+	private List<User> employes; 
 
 	private Integer employeIdToBeUpdated; // getter et setter
 
@@ -74,10 +73,22 @@ public class ControllerEmployeImpl  {
 
 		else
 		{
+			if (authenticatedUser != null && authenticatedUser.getRole() == Role.USER)
+			{
 			
-			FacesMessage facesMessage =
-					new FacesMessage("Login Failed: Please check your username/password and try again.");
-			FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+				navigateTo = "/pages/users/property.xhtml";
+				loggedIn = true;
+				
+			}
+			else
+			{
+				FacesMessage facesMessage =
+						new FacesMessage("Login Failed: Please check your username/password and try again.");
+				FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+			}
+			
+			
+			
 		}
 		return navigateTo;	
 	}
@@ -94,7 +105,7 @@ public class ControllerEmployeImpl  {
 
 		if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
 
-		employeService.addOrUpdateEmploye(new Employe(nom, prenom, email, password, actif, role)); 
+		employeService.addOrUpdateEmploye(new User(nom, prenom, email, password, actif, role)); 
 		return "null"; 
 	}  
 
@@ -106,7 +117,7 @@ public class ControllerEmployeImpl  {
 		return navigateTo; 
 	} 
 
-	public String displayEmploye(Employe empl) 
+	public String displayEmploye(User empl) 
 	{
 		String navigateTo = "null";
 		if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
@@ -130,7 +141,7 @@ public class ControllerEmployeImpl  {
 		
 		if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
 
-		employeService.addOrUpdateEmploye(new Employe(employeIdToBeUpdated, nom, prenom, email, password, actif, role)); 
+		employeService.addOrUpdateEmploye(new User(employeIdToBeUpdated, nom, prenom, email, password, actif, role)); 
 
 		return navigateTo; 
 
@@ -164,7 +175,7 @@ public class ControllerEmployeImpl  {
 	}
 
 
-	public List<Employe> getAllEmployes() {
+	public List<User> getAllEmployes() {
 		return employeService.getAllEmployes();
 	}
 
@@ -176,7 +187,7 @@ public class ControllerEmployeImpl  {
 		this.loggedIn = loggedIn;
 	}
 
-	public int ajouterEmploye(Employe employe)
+	public int ajouterEmploye(User employe)
 	{
 		employeService.addOrUpdateEmploye(employe);
 		return employe.getId();
@@ -258,12 +269,12 @@ public class ControllerEmployeImpl  {
 		this.role = role;
 	}
 
-	public List<Employe> getEmployes() {
+	public List<User> getEmployes() {
 		employes = employeService.getAllEmployes(); 
 		return employes;
 	}
 
-	public void setEmployes(List<Employe> employes) {
+	public void setEmployes(List<User> employes) {
 		this.employes = employes;
 	}
 
@@ -275,11 +286,11 @@ public class ControllerEmployeImpl  {
 		this.employeIdToBeUpdated = employeIdToBeUpdated;
 	}
 
-	public Employe getAuthenticatedUser() {
+	public User getAuthenticatedUser() {
 		return authenticatedUser;
 	}
 
-	public void setAuthenticatedUser(Employe authenticatedUser) {
+	public void setAuthenticatedUser(User authenticatedUser) {
 		this.authenticatedUser = authenticatedUser;
 	}
 

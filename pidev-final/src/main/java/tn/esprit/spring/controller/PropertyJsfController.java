@@ -1,5 +1,6 @@
 package tn.esprit.spring.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EnumType;
@@ -11,10 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import tn.esprit.spring.entities.Employe;
+
 import tn.esprit.spring.entities.Property;
+import tn.esprit.spring.entities.Rent;
 import tn.esprit.spring.entities.TypeProperty;
 import tn.esprit.spring.services.IPropertyService;
+import tn.esprit.spring.services.IRentService;
 
 @Scope(value = "session")
 @Controller(value = "propertyControlle")
@@ -34,8 +37,45 @@ public class PropertyJsfController
 	private int  test  ; 
 	
 	
+	@Autowired
+	IPropertyService propertyService ;
+	@Autowired
+	IRentService rentService ; 
+	/* tri par date rent */
+	public float  rechercheProperty2(Date date)
+	{
+		@SuppressWarnings("deprecation")
+		int year = date.getYear();
+		List<Object[]> liste; 
+		float average; 
+
+		
+		liste = rentService.getMoyenRentyear(year); 
+		
+		Object[] object = liste.get(1); 
+		if (object.length==0)
+		{
+			average=0 ; 
+		}
+		    average = (float) object[1]; 
+		
+		return average; 
+		
+					
+	}
+	/************************/
+	public String mapingtoStatstique()
+	{
+		
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/statistique.xhtml";
+		return navigateTo;			
+	}
 	
 	
+	
+	
+	/************************/
 	
 	public int getTest() {
 		return test;
@@ -66,10 +106,16 @@ public class PropertyJsfController
 		this.setTest(1);
 		String navigateTo = "null";
 		navigateTo = "/pages/admin/filter.xhtml";
-		return navigateTo;	
-		
+		return navigateTo;			
 	}
-	
+
+	public String triPrice()
+	{
+		this.setPts(propertyService.triPrice());
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/filter.xhtml";
+		return navigateTo;			
+	}
 	
 	public int getPropertyIdToBeUpdated() {
 		return propertyIdToBeUpdated;
@@ -85,8 +131,8 @@ public class PropertyJsfController
 	}
 	private List<Property> propertys; 
 
-	@Autowired
-	IPropertyService propertyService ; 
+	
+	
 	
 	public String addEmploye()
 	{
@@ -112,11 +158,7 @@ public class PropertyJsfController
 		
 		propertyService.deletePropertyById(propertyId); 	 
 	}
-	/* recherche par prix */
-	public void RechercheParPrix()
-	{
-		
-	}
+	
 	
 	
 	public void displayProperty (Property property)
@@ -130,7 +172,15 @@ public class PropertyJsfController
 		this.setSurface(property.getSurface());
 		this.setNbPiece(property.getNbPiece());
 		this.setPropertyIdToBeUpdated(property.getId_Property());
+		propertyService.incrementeNbVue(property.getId_Property());
 		
+		
+	}
+	public void approximation(float surface , TypeProperty type )
+	{
+		String typeProperty = type.toString(); 
+		float price =propertyService.ApproximationProperty(surface, typeProperty); 
+		this.setPrice(price);
 	}
 	public void updateProperty()
 	{

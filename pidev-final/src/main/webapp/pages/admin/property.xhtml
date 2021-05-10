@@ -84,96 +84,25 @@
 						<td colspan="2"><h:commandButton value="Ajouter property"
 								action="#{propertyControlle.addEmploye()}" />
 								 <h:commandButton value=" Mettre A jour property"
-								 action="#{propertyControlle.updateProperty()}"/></td>
+								 action="#{propertyControlle.updateProperty()}"/>
+								 <h:commandButton value="approximation de prix "
+								 action="#{propertyControlle.approximation(propertyControlle.surface,propertyControlle.type)}"/></td>
 					</tr>
 
 				</table>
 			</h:form>
 		</h:panelGroup>
+	
+		
+		
+
+
+
+
+
 
 		<br />
-		<h:panelGroup columns="2">
-			<h:form>
-			 <div class="card">
-				<h:dataTable value="#{propertyControlle.pts}" var="property"
-					border="1">
-					<h:column >
-						<f:facet name="header">
-							<h:outputText value="name Property" />
-						</f:facet>
-						<h:outputText value="#{property.name_Property}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="type Property" />
-						</f:facet>
-						<h:outputText value="#{property.type}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="price" />
-						</f:facet>
-						<h:outputText value="#{property.price}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="adresse" />
-						</f:facet>
-						<h:outputText value="#{property.adresse}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="nombre de piece" />
-						</f:facet>
-						<h:outputText value="#{property.nbPiece}" />
-					</h:column>
 		
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="surface" />
-						</f:facet>
-						<h:outputText value="#{property.surface}" />
-					</h:column>
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="nombre de vue" />
-						</f:facet>
-						<h:outputText value="#{property.nbVue}" />
-					</h:column>				
-
-					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
-					<!-- BEGIN :  TP4 JSF Modifier Employé -->
-					<h:column>
-						<f:facet name="header">
-							<h:outputText value="Action" />
-						</f:facet>
-						<h:commandButton
-							
-							value="Supprimer"
-							action="#{propertyControlle.removeProperty(property.id_Property)}" />
-							
-						<h:commandButton
-							
-							value="Afficher" 
-							action="#{propertyControlle.displayProperty(property)}"/>
-						
-					</h:column>
-					
-		
-					<!-- END :  TP4 JSF Supprimer Employé -->
-					<!-- END :  TP4 JSF Modifer Employé -->
-
-				</h:dataTable>
-			 </div>
-			</h:form>
-		</h:panelGroup>
-
-
-
-
-
-
-
 
 
 
@@ -181,6 +110,8 @@
 		<br />
 		<h:panelGroup columns="2">
 			<h:form>
+			<h:commandButton id="recherche" class="btn btn-outline-secondary" value="tri par nombre de vue" action="#{propertyControlle.rechercheProperty()}"/>
+			<h:commandButton id="recherche2" class="btn btn-outline-secondary" value="tri par prix" action="#{propertyControlle.triPrice()}"/>
 			 <div class="card">
 				<h:dataTable value="#{propertyControlle.propertys}" var="property"
 					border="1">

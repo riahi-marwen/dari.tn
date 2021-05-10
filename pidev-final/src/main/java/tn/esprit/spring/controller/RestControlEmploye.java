@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import tn.esprit.spring.entities.Employe;
-
+import tn.esprit.spring.entities.User;
 import tn.esprit.spring.services.IEmployeService;
 
 
@@ -32,7 +31,7 @@ public class RestControlEmploye {
 	
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
-	public Employe ajouterEmploye(@RequestBody Employe employe)
+	public User ajouterEmploye(@RequestBody User employe)
 	{
 		iemployeservice.addOrUpdateEmploye(employe);
 		return employe;
@@ -88,7 +87,7 @@ public class RestControlEmploye {
 	 // URL : http://localhost:8081/SpringMVC/servlet/getAllEmployes
 	@GetMapping(value = "/getAllEmployes")
     @ResponseBody
-	public List<Employe> getAllEmployes() {
+	public List<User> getAllEmployes() {
 		
 		return iemployeservice.getAllEmployes();
 	}

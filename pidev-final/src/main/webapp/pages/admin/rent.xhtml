@@ -27,8 +27,7 @@
       <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{rentControlle.navigToRent()}" />
       <h:commandButton id="btny" class="btn btn-outline-secondary" value="list of rent"   />
       <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{rentControlle.navigToBuy()}" /> 
-      <h:commandButton id="buyy" class="btn btn-outline-secondary" value="Rechercheeee" action="#{rentControlle.rechercheParPrix(10)}" /> 
-      
+      <h:commandButton id="buyy" class="btn btn-outline-secondary" value=" statistique of rent " action="#{propertyControlle.mapingtoStatstique()}" /> 
       <h:commandButton id="recherche" class="btn btn-outline-secondary" value="recherche" action="#{fonctionControlle.recherchee()}"/> 
       
       	
@@ -45,6 +44,7 @@
 
 <h:panelGroup columns="2">
 			<h:form>
+			
 			
 				
 				<table>
@@ -115,6 +115,7 @@
 		<br />
 		<h:panelGroup columns="2">
 			<h:form>
+			
 			 <div class="card">
 				<h:dataTable value="#{rentControlle.rents}" var="property"
 					border="1">

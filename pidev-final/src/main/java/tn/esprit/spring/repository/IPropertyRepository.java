@@ -14,7 +14,9 @@ import tn.esprit.spring.entities.Property;
 @Repository
 public interface IPropertyRepository extends CrudRepository<Property, Integer>
 {
-	@Query("select p from Property p order by nbVue  ")
+	@Query("select p from Property p order by nbVue DESC ")
 	public List<Property> getTriNbvueProperty();
+	@Query("select p from Property p order by price DESC ")
+	public List<Property> getTripriceProperty();
 
 }

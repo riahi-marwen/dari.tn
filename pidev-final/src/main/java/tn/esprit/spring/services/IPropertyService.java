@@ -19,7 +19,10 @@ public interface IPropertyService
 	public void incrementeVue( int Id_Property); 
 	public Property affichePropertyById(  int Id_Property) ; 
 	public List<Property> triNbVue(); 
+	public List<Property> triPrice(); 
+	
 	public float  ApproximationProperty(float surface ,  String typeProperty  ); 
+	public void incrementeNbVue(  int Id_Property) ;
 
 	
 	

@@ -60,7 +60,7 @@ public class RentRestController
 	
 	//calculer la moyenne des achats par mois
 	@GetMapping(value = "/getmoyenbillbymonth/annee/{a}/mois/{m}")
-	public List<Object[]> getMoyenRentMonth(@PathVariable("p") int idcommand,@PathVariable("a")Integer a, @PathVariable("m")Integer m) {
+	public List<Object[]> getMoyenRentMonth(@PathVariable("a")Integer a, @PathVariable("m")Integer m) {
 		return irent.getMoyenRentMonth(a, m); 
 	}
 
