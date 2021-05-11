@@ -70,7 +70,7 @@
 						<div class="signin-form">
 
 							<h2 class="form-title">Sign in</h2>
-							<form method="post" class="register-form" id="loginfrm">
+							<h:form method="post" class="register-form" id="loginfrm">
 		     <h:outputLabel value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
 		     			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>			
 								<div class="form-group">
@@ -78,7 +78,7 @@
 										<i><img src="images/personne.png" alt="sing up image"
 											width="15px" height="15px" /></i> Your Name :
 									</h5>
-									<h:inputText type="text" name="name" 
+									<h:inputText type="text" name="name" id="username"
 										placeholder="Your Name" value="#{UsersController.usr}"/>
 								</div>
 
@@ -87,7 +87,7 @@
 										<i><img src="images/password.png" alt="sing up image"
 											width="15px" height="15px" /></i> You Password :
 									</h5>
-									<h:inputSecret type="password" name="pass" 
+									<h:inputSecret type="password" name="pass" id="password"
 
 										placeholder="Password" value="#{UsersController.pass}"/>
 								</div>
@@ -102,7 +102,7 @@
 								<p:commandButton class="form-submit" value="Connexion" 
 										 action="#{UsersController.signin()}" />
 								</div>
-							</form>
+							</h:form>
 
 							<div class="social-login">
 								<span class="social-label">Or login with</span>

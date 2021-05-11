@@ -39,14 +39,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	    @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	    	http.authorizeRequests().antMatchers("/javax.faces.resource/**")
-	        .permitAll();
+	        .permitAll()       ; 
+	  
 	        http.authorizeRequests()
 	                // CUSTOMER & ADMIN
 	                .antMatchers("/").permitAll()
 	                .antMatchers("/Login/login.jsf").permitAll()
 	                .antMatchers("/Login/signup.jsf").permitAll()
-	                .antMatchers("/Login/signin.jsf").permitAll();
-	        http.csrf().disable();
+	                .antMatchers("/Login/signin.jsf").permitAll()
+					.and()
+					.formLogin().loginPage("/Login/signin.jsf")
+						.defaultSuccessUrl("/Login/singup.xhtml", true)
+						.usernameParameter("username")
+						.passwordParameter("password").permitAll() 
+						.and()
+						.rememberMe().key("uniqueAndSecret")
+					.and()
+						.logout()
+						.logoutSuccessUrl("/login.xhtml")
+						.deleteCookies("JSESSIONID")
+						.and()
+						.csrf().disable();
+	
 	    }
 
 	    @Autowired

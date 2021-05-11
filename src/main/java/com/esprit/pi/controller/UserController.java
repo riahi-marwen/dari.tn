@@ -77,23 +77,23 @@ public class UserController {
 		this.confirmationToken = confirmationToken;
 	}
 	public String signin() {
-		logger.error("test2");
+
+		System.out.println("test2");
 		String navigateTo = "/Login/signup.jsf";
 
-		logger.info("Ya riaaaaaaaaaaaaaaaadeh");
 
-		logger.error("Ya riaaaaaaaaaaaaaaaadeh");
-		logger.debug(userform.getPassword());
+		System.out.println(usr);
+		System.out.println(pass);
 		authenticatedUser = userService.authenticate(usr,pass);
+		System.out.println(authenticatedUser);
 		if (authenticatedUser != null && authenticatedUser.getUserRole() == UserRole.CLIENT) {
 
-		logger.error("User ya riadh");
-			navigateTo = "/Vente/affichevente.xhtml?faces-redirect=true";
+			navigateTo = "/Login/login.xhtml?faces-redirect=true";
 			authenticatedUser.setActive(true);
 		}
 		if (authenticatedUser != null && authenticatedUser.getUserRole() == UserRole.ADMINISTRATEUR) {
 
-			navigateTo = "/Login/dashbordvente.xhtml?faces-redirect=true";
+			navigateTo = "/Login/signup.xhtml?faces-redirect=true";
 			authenticatedUser.setActive(true);
 		}
 

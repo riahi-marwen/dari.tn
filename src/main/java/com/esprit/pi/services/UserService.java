@@ -45,8 +45,6 @@ public class UserService implements UserDetailsService {
         System.out.println("test2");
         user.setPassword(encryptedPassword);
         userRepository.save(user);
-
-        System.out.println("test3");
         final ConfirmationToken confirmationToken = new ConfirmationToken(user);
 
         confirmationTokenService.saveConfirmationToken(confirmationToken);
@@ -75,10 +73,10 @@ public class UserService implements UserDetailsService {
     }
     public User authenticate(String login,String password) {
 
-        final String encryptedPassword = bCryptPasswordEncoder.encode(password);
-    	User user  = userRepository.getUsersByUserNameAndPassword(login, encryptedPassword);
-    	if(user!=null && user.isEnabled() == true) {
-    		return user;
+    	Optional<User> user  = userRepository.findByUsername(password);
+    	if(user.isPresent() && 
+    			bCryptPasswordEncoder.matches(password, user.get().getPassword())  == true) {
+    		return user.get();
     	}
     	else
     		return null;
