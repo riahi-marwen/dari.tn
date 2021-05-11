@@ -35,8 +35,22 @@ public class UserController {
     private  ConfirmationTokenService confirmationTokenService;
 	@Autowired
 	private UserForm userform ;
-	private boolean active;
-    final static Logger logger = Logger.getLogger(UserController.class);
+	private User authenticatedUser = new User();
+	private String usr;
+	private String pass;
+    public String getUsr() {
+		return usr;
+	}
+	public void setUsr(String usr) {
+		this.usr = usr;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	final static Logger logger = Logger.getLogger(UserController.class);
 	public UserService getUserService() {
 		return userService;
 	}
@@ -48,12 +62,6 @@ public class UserController {
 	}
 	public void setConfirmationTokenService(ConfirmationTokenService confirmationTokenService) {
 		this.confirmationTokenService = confirmationTokenService;
-	}
-	public boolean isActive() {
-		return active;
-	}
-	public void setActive(boolean active) {
-		this.active = active;
 	}
 	public User getAuthenticatedUser() {
 		return authenticatedUser;
@@ -68,13 +76,15 @@ public class UserController {
 	public void setConfirmationToken(ConfirmationToken confirmationToken) {
 		this.confirmationToken = confirmationToken;
 	}
-	private User authenticatedUser;
-	public String doLogin() {
-		logger.debug("test2");
+	public String signin() {
+		logger.error("test2");
 		String navigateTo = "/Login/signup.jsf";
-		logger.debug("Ya riaaaaaaaaaaaaaaaadeh");
+
+		logger.info("Ya riaaaaaaaaaaaaaaaadeh");
+
+		logger.error("Ya riaaaaaaaaaaaaaaaadeh");
 		logger.debug(userform.getPassword());
-		authenticatedUser = userService.authenticate(userform.getUsername(),userform.getPassword());
+		authenticatedUser = userService.authenticate(usr,pass);
 		if (authenticatedUser != null && authenticatedUser.getUserRole() == UserRole.CLIENT) {
 
 		logger.error("User ya riadh");

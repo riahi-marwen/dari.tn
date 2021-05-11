@@ -24,7 +24,8 @@ public class UserService implements UserDetailsService {
     private  ConfirmationTokenService confirmationTokenService;
     @Autowired
     private EmailSenderService emailSenderService;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private  BCryptPasswordEncoder bCryptPasswordEncoder ;
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -75,7 +76,7 @@ public class UserService implements UserDetailsService {
     public User authenticate(String login,String password) {
 
         final String encryptedPassword = bCryptPasswordEncoder.encode(password);
-    	User user  = userRepository.getUsersByEmailAndPassword(login, encryptedPassword);
+    	User user  = userRepository.getUsersByUserNameAndPassword(login, encryptedPassword);
     	if(user!=null && user.isEnabled() == true) {
     		return user;
     	}

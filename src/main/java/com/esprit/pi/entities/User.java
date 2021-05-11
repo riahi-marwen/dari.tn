@@ -8,14 +8,17 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.esprit.pi.payload.UserForm;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 @Getter
 @Setter
 @Builder
@@ -28,7 +31,7 @@ public class User implements UserDetails,Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1396669830860400871L;
 	@Transient
 	private boolean active;
 	@Id
@@ -164,12 +167,6 @@ public class User implements UserDetails,Serializable {
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        final SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(userRole.name());
-        return Collections.singletonList(simpleGrantedAuthority);
-    }
 
 
     public User() {
@@ -190,25 +187,31 @@ public class User implements UserDetails,Serializable {
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
 	@Override
 	public boolean isAccountNonLocked() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
-
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return enabled;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		  List<GrantedAuthority> grantedAuthorityList = new ArrayList<>();
+	        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(this.getUserRole().getType() );
+	        grantedAuthorityList.add(simpleGrantedAuthority);
+	        return grantedAuthorityList;
 	}
 
 }

@@ -3,6 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" xmlns:p1="http://primefaces.org/ui">
+
+	<ui:param name="page_name" value="Connexion" />
 	<h:head>
 		<h:outputStylesheet library="test" name="css/bootstrap.min.css"></h:outputStylesheet>
 		<h:outputStylesheet library="test" name="css/font-awesome.min.css"></h:outputStylesheet>
@@ -68,15 +70,16 @@
 						<div class="signin-form">
 
 							<h2 class="form-title">Sign in</h2>
-							<form method="post" class="register-form" id="login-form">
-
+							<form method="post" class="register-form" id="loginfrm">
+		     <h:outputLabel value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
+		     			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>			
 								<div class="form-group">
 									<h5>
 										<i><img src="images/personne.png" alt="sing up image"
 											width="15px" height="15px" /></i> Your Name :
 									</h5>
 									<h:inputText type="text" name="name" 
-										placeholder="Your Name" value="#{UsersController.userform.username}"/>
+										placeholder="Your Name" value="#{UsersController.usr}"/>
 								</div>
 
 								<div class="form-group">
@@ -86,7 +89,7 @@
 									</h5>
 									<h:inputSecret type="password" name="pass" 
 
-										placeholder="Password" value="#{UsersController.userform.password}"/>
+										placeholder="Password" value="#{UsersController.pass}"/>
 								</div>
 
 								<div class="form-group">
@@ -96,9 +99,8 @@
 								</div>
 
 								<div class="form-group form-button">
-								<p:commandButton class="form-submit" value="Log in" 
-										 action="#{UsersController.doLogin()}" />
-									
+								<p:commandButton class="form-submit" value="Connexion" 
+										 action="#{UsersController.signin()}" />
 								</div>
 							</form>
 

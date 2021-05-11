@@ -11,11 +11,11 @@
 			<b>Connexion</b>
 			<h:panelGrid columns="2">
 				<h:outputText value="Login (Email)" />
-				<h:inputText value="#{UserController.userform.username}" />
+				<h:inputText value="#{UsersController.userform.username}" />
 				<h:outputText value="Mot de passe" />
-				<h:inputSecret value="#{UserController.userform.password}" />
+				<h:inputSecret value="#{UsersController.userform.password}" />
 				<h:commandButton id="btn" value="Connexion"
-					action="#{UsersController.doLogin()}" />
+					action="#{UsersController.signin()}" />
 				<h:message for="btn" />
 			</h:panelGrid>
 		</h:form>

@@ -51,7 +51,7 @@
         </init-param>
         <init-param>
             <param-name>uploadDirectory</param-name>
-            <param-value>C:\Users\Me\Desktop\up</param-value>
+            <param-value>$HOME</param-value>
         </init-param>
     </filter>
     <filter-mapping>
