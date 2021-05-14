@@ -1,8 +1,12 @@
 package tn.esprit.projet.controller;
 
+import java.util.List;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.ocpsoft.rewrite.annotation.Join;
 import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import tn.esprit.projet.modal.Role;
 import tn.esprit.projet.modal.User;
 import tn.esprit.projet.service.IUserService;
+import tn.esprit.projet.service.ProduitServiceImpl;
 
 @Scope(value = "session")
 @Controller(value = "usermaroController") // Name of the bean in Spring IoC
@@ -20,15 +25,47 @@ import tn.esprit.projet.service.IUserService;
 public class UserJsfController {
 	@Autowired
 	IUserService userService;
+	private static final Logger l = LogManager.getLogger(ProduitServiceImpl.class);
 
 	private String login;
-	private String password; 
+	private String password;
+	private String name;
 	private User user;
 	private Boolean loggedIn;
-	
+	private Role role;
 	public IUserService getUserService() {
 		return userService;
 	}
+	
+	
+	public String displayUser(User user) {
+		// String navigateTo = "null";
+		this.setName(user.getUserName());
+		this.setLogin(user.getEmail());
+		this.setPassword(user.getPassword());
+		this.setRole(user.getRole());
+		return "/Login/modifUsers.xhtml?faces-redirect=true";
+
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	
 
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
@@ -66,7 +103,7 @@ public class UserJsfController {
 		this.loggedIn = loggedIn;
 	}
 
-	public String doLogin() {
+	/*public String doLogin() {
 		String navigateTo = "null";
 		User u=userService.authenticate(login, password);
 		if (u != null && u.getRole() == Role.ADMIN) {
@@ -80,10 +117,39 @@ public class UserJsfController {
 		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
 		}
 		return navigateTo;
+		}*/
+	
+		public String doLogin() {
+		String navigateTo = "null";
+		User u = userService.authenticate(login, password);
+		if (u != null && user.getRole() == Role.USER) {
+
+			navigateTo = "/Vente/affichevente.xhtml?faces-redirect=true";
+			loggedIn = true;
 		}
+		if (u != null && user.getRole() == Role.ADMIN) {
+
+			navigateTo = "/Login/dashbordvente.xhtml?faces-redirect=true";
+			loggedIn = true;
+		}
+
+		else {
+			FacesMessage facesMessage =
+
+					new FacesMessage("Login Failed: please check your username/password and try again.");
+
+			FacesContext.getCurrentInstance().addMessage("form:btn", facesMessage);
+		}
+		return navigateTo;
+	}
 
 		public String doLogout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/login.xhtml?faces-redirect=true";
-		}
+		return "/Login/signin.xhtml?faces-redirect=true";
+	}
+
+		//public String doLogout() {
+		//FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+		//return "/login.xhtml?faces-redirect=true";
+		//}
 }

@@ -1,5 +1,6 @@
 package tn.esprit.projet.service;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,5 +74,9 @@ public class UserService implements IUserService{
 	public User authenticate(String login, String password) {
 		return userRepository.getUserByEmailAndPassword(login, password);
 	}
+
+	
+
+	
 
 }
