@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,6 +35,9 @@ public class Livreur implements Serializable {
 	
 	@Column 
 	public boolean disponnible ;
+	
+	@Enumerated(EnumType.STRING)
+	public Secteur secteur; 
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "livreurs")
 	@JsonIgnore
@@ -78,20 +83,34 @@ public class Livreur implements Serializable {
 		this.livraisons = livraisons;
 	}
 
+	
+
+	public Secteur getSecteur() {
+		return secteur;
+	}
+
+	public void setSecteur(Secteur secteur) {
+		this.secteur = secteur;
+	}
+
 	public Livreur() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Livreur(int idLivreur, String nomLivreur, String emailLivreur, boolean disponnible,
+	public Livreur(int idLivreur, String nomLivreur, String emailLivreur, boolean disponnible, Secteur secteur,
 			Set<Livraison> livraisons) {
 		super();
 		this.idLivreur = idLivreur;
 		this.nomLivreur = nomLivreur;
 		this.emailLivreur = emailLivreur;
 		this.disponnible = disponnible;
+		this.secteur = secteur;
 		this.livraisons = livraisons;
 	}
+
+	
+	
 	
 	
 	

@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Livraison" />
+
+	<ui:define name="content">
+
+		<h:panelGroup columns="2">
+			<h:form>
+				<table>
+
+					<tr>
+						<td><h:outputText value="nomLivreur"></h:outputText></td>
+						<td><h:inputText value="#{livreurCo.nomLivreur}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="emailLivreur"></h:outputText></td>
+						<td><h:inputText value="#{livreurCo.emailLivreur}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Secteur"></h:outputText></td>
+						<td><h:selectOneMenu value="#{livreurCo.secteur}">
+								<f:selectItem itemLabel="Choisir le secteur du livreur"
+									itemValue="#{null}" />
+								<f:selectItems value="#{livreurCo.secteurs}" />
+							</h:selectOneMenu></td>
+					</tr>
+
+
+					<tr>
+						<TD ><h:outputText value="Disponible"></h:outputText> </TD >
+						 <TD ><h:selectBooleanCheckbox value="#{livreurCo.disponnible}"
+							itemLabel="Livreur disponnible" /></TD>
+					</tr>
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter"
+								action="#{livreurCo.addLivreur()}" /> <h:commandButton
+								value=" Mettre reclamation A jour "
+								action="#{livreurCo.updateLivreur()}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</h:panelGroup>
+
+
+	</ui:define>
+
+</ui:composition>

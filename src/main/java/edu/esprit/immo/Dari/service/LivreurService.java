@@ -9,7 +9,7 @@ public interface LivreurService {
 	public Livreur addLivreur (Livreur livreur);
 	public List<Livreur> retieveAllLivreur(); 
 	public Livreur updateLivreur (Livreur livreur); 
-	public void deleteLivreur (String id); 
-	public Livreur retieveLivreur (String id);
+	public void deleteLivreur (int id); 
+	public Livreur retieveLivreur (int id);
 
 }

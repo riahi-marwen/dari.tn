@@ -24,8 +24,12 @@ public class LivraisonController {
 	
 	@PostMapping("/addlivraison")
 	public void addLivraison (@RequestBody Livraison liv ) {
-		
-		sliv.addLivraison(liv);
+		if (sliv.affectationAutoLivreur(liv.getAdresse())!= null)
+		{
+			liv.setLivreurs(sliv.affectationAutoLivreur(liv.getAdresse()));
+			sliv.addLivraison(liv);
+		}
+			
 		
 	}
 	
@@ -51,6 +55,8 @@ public class LivraisonController {
 	
 		return sliv.retrievLiv(idLivraison); 
 	}
+	
+	
 	 
 	
 	

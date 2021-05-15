@@ -35,17 +35,18 @@ public class LivreurServiceImpl implements LivreurService{
 		return null;
 	}
 
+	
+
 	@Override
-	public void deleteLivreur(String id) {
-		
-		livreurRepo.deleteById(Integer.parseInt(id));
+	public void deleteLivreur(int id) {
+		livreurRepo.deleteById(id);	
 		
 	}
 
 	@Override
-	public Livreur retieveLivreur(String id) {
+	public Livreur retieveLivreur(int id) {
 		
-		return livreurRepo.findById(Integer.parseInt(id)).orElse(null) ;
+		return livreurRepo.findById(id).orElse(null);
 	}
 
 }

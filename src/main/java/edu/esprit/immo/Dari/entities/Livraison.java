@@ -43,6 +43,8 @@ public class Livraison implements Serializable {
 	@JsonIgnore
 	public Set<Commande> commandes ;
 	
+	@Enumerated(EnumType.STRING)
+	Secteur adresse ;
 	
 	@ManyToOne
 	
@@ -87,20 +89,52 @@ public class Livraison implements Serializable {
 	public void setCommandes(Set<Commande> commandes) {
 		this.commandes = commandes;
 	}
+	
+
+	
+
+	public Secteur getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Secteur adresse) {
+		this.adresse = adresse;
+	}
 
 	public Livraison() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Livraison(int idLivraison, Date dateLivraison, Etat etat, Set<Commande> commandes, Livreur livreurs) {
+	public Livraison(int idLivraison, Date dateLivraison, Etat etat, Set<Commande> commandes, Secteur adresse,
+			Livreur livreurs) {
 		super();
 		this.idLivraison = idLivraison;
 		this.dateLivraison = dateLivraison;
 		this.etat = etat;
 		this.commandes = commandes;
+		this.adresse = adresse;
 		this.livreurs = livreurs;
 	}
+
+	public Livraison( Date dateLivraison, Etat etat, Secteur adresse) {
+		super();
+		
+		this.dateLivraison = dateLivraison;
+		this.etat = etat;
+		
+		this.adresse = adresse;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
+	
+
+	
 
 	
 	

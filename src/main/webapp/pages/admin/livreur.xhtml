@@ -1,0 +1,83 @@
+
+
+
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+
+		<h:form>
+			<div class="card crud-demo">
+				<p:growl id="messages" showDetail="true" />
+
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:linkButton outcome="/pages/admin/ajoutLivreur.xhtml"
+							value="Ajouter un nouveau livreur" icon="pi pi-star"
+							style="margin-right:20px;">
+
+						</p:linkButton>
+
+
+					</p:toolbarGroup>
+
+				</p:toolbar>
+			</div>
+		</h:form>
+
+		<div class="card">
+			<h:form id="form">
+				<p:dataTable value="#{livreurCo.livreurs}" var="x">
+
+					<f:facet name="header">
+
+					</f:facet>
+					<p:column headerText="id">
+						<h:outputText value="#{x.idLivreur}" />
+					</p:column>
+					<p:column headerText="Nom Livreur">
+						<h:outputText value="#{x.nomLivreur}" />
+					</p:column>
+					<p:column headerText="Email ">
+						<h:outputText value="#{x.emailLivreur}" />
+					</p:column>
+					<p:column headerText="Disponnible ">
+						<h:outputText value="#{x.disponnible}" />
+					</p:column>
+					<p:column headerText="Secteur ">
+						<h:outputText value="#{x.secteur}" />
+					</p:column>
+
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton value="Supprimer"
+							action="#{livreurCo.RemoveLivreur(x.idLivreur)}" />
+						<h:commandButton value="Afficher"
+							action="#{livreurCo.DisplayLivreur(x)}" />
+
+					</p:column>
+
+
+
+				</p:dataTable>
+	
+			</h:form>
+		</div>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+

@@ -32,11 +32,12 @@ public class LivreurController {
 		slivr.updateLivreur(livreur);
 	}
 	
-	@DeleteMapping("/deleteLivreur/{lrId}")
-	public void deleteLivreur (@PathVariable ("lrId") String idLivreur ) {
-	
-		slivr.deleteLivreur(idLivreur);
-	}
+	/*
+	 * @DeleteMapping("/deleteLivreur/{lrId}") public void deleteLivreur
+	 * (@PathVariable ("lrId") int idLivreur ) {
+	 * 
+	 * slivr.deleteLivreur(idLivreur); }
+	 */
 	
 	@GetMapping("/retrieve-all-livreur")
 	public List<Livreur> getLivreurs (){
@@ -45,7 +46,7 @@ public class LivreurController {
 	}
 	
 	@GetMapping("retrieve-livreur/{lrId}")
-	public Livreur retrieveLivreur (@PathVariable ("lrId") String idLivreur ) {
+	public Livreur retrieveLivreur (@PathVariable ("lrId") int idLivreur ) {
 		return slivr.retieveLivreur(idLivreur);
 	}
 	
