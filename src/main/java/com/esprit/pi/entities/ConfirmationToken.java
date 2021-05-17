@@ -1,12 +1,8 @@
 package com.esprit.pi.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -18,7 +14,7 @@ public class ConfirmationToken {
 
     private String confirmationToken;
 
-    private LocalDate createdDate;
+    private Date createdDate;
 
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
@@ -40,11 +36,11 @@ public class ConfirmationToken {
 		this.confirmationToken = confirmationToken;
 	}
 
-	public LocalDate getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(LocalDate createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -56,7 +52,7 @@ public class ConfirmationToken {
 		this.user = user;
 	}
 
-	public ConfirmationToken(Long id, String confirmationToken, LocalDate createdDate, User user) {
+	public ConfirmationToken(Long id, String confirmationToken, Date createdDate, User user) {
 		this.id = id;
 		this.confirmationToken = confirmationToken;
 		this.createdDate = createdDate;
@@ -68,7 +64,7 @@ public class ConfirmationToken {
 
 	public ConfirmationToken(User user) {
         this.user = user;
-        this.createdDate = LocalDate.now();
+        this.createdDate = new Date();
         this.confirmationToken = UUID.randomUUID().toString();
     }
 }

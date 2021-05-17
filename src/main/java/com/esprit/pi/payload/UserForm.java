@@ -20,6 +20,14 @@ public class UserForm {
     private UserRole userRole = UserRole.CLIENT;
     private Boolean locked = false;
     private Boolean enabled = false;
+    private String confirmpass;
+	public String getConfirmpass() {
+		return confirmpass;
+	}
+
+	public void setConfirmpass(String confirmpass) {
+		this.confirmpass = confirmpass;
+	}
 
 	public Long getId() {
 		return id;

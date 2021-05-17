@@ -26,7 +26,7 @@ import javax.faces.context.FacesContext;
 @Scope(value = "session")
 @Controller(value = "UsersController")
 @ELBeanName(value = "UsersController")
-@Join(path = "/", to = "/Login/signin.jsf")
+@Join(path = "/", to = "/Login/signup.jsf?faces-redirect=true")
 @AllArgsConstructor
 public class UserController {
 	@Autowired
@@ -38,7 +38,14 @@ public class UserController {
 	private User authenticatedUser = new User();
 	private String usr;
 	private String pass;
-    public String getUsr() {
+	private String Confirmationtoken;
+    public String getConfirmationtoken() {
+		return Confirmationtoken;
+	}
+	public void setConfirmationtoken(String confirmationtoken) {
+		Confirmationtoken = confirmationtoken;
+	}
+	public String getUsr() {
 		return usr;
 	}
 	public void setUsr(String usr) {
@@ -79,7 +86,7 @@ public class UserController {
 	public String signin() {
 
 		System.out.println("test2");
-		String navigateTo = "/Login/signup.jsf";
+		String navigateTo = null;
 
 
 		System.out.println(usr);
@@ -93,7 +100,7 @@ public class UserController {
 		}
 		if (authenticatedUser != null && authenticatedUser.getUserRole() == UserRole.ADMINISTRATEUR) {
 
-			navigateTo = "/Login/signup.xhtml?faces-redirect=true";
+			navigateTo = "/Login/signup.jsf?faces-redirect=true";
 			authenticatedUser.setActive(true);
 		}
 
@@ -112,13 +119,13 @@ public class UserController {
 
 	public String doLogout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-		return "/Login/signin.xhtml?faces-redirect=true";
+		return "/Login/signin.jsf?faces-redirect=true";
 	}
 
 	public String signup() {
 		User user= new User(userform);
 		userService.signUpUser(user);
-		return "/Login/signin.xhtml?faces-redirect=true";
+		return "/Login/signin.jsf?faces-redirect=true";
 
 	}
 	public UserForm getUserform() {
@@ -136,6 +143,25 @@ public class UserController {
 
         return "redirect:/Login/signin.jsf?faces-redirect=true";
     }
+    @GetMapping("/resetPass")
+    String RediractResetPass(@RequestParam("token") String token) {
+    	Confirmationtoken = token;
+        return "redirect:/Login/resetpassform.jsf?faces-redirect=true";
+    }
 
 
+	public String Sendresetpasswordemail() {
+		authenticatedUser = userService.findUserByEmail(userform.getEmail());
+		if(userService.SendRestpasswordemail(userform.getEmail())) {
+			return "/Login/signup.jsf?faces-redirect=true";
+		}
+		else{
+			return null;
+		}
+	}
+	public String resetpassform() {
+		userService.UpdateUserPassword(authenticatedUser, userform.getPassword());
+		System.out.println("teset1");
+		return "/Login/singin.jsf";
+	}
 }

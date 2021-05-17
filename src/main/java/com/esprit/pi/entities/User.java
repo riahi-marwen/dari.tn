@@ -23,14 +23,10 @@ import java.util.List;
 @Setter
 @Builder
 @EqualsAndHashCode
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "users")
 public class User implements UserDetails,Serializable {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = -1396669830860400871L;
 	@Transient
 	private boolean active;

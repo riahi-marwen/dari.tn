@@ -1,6 +1,7 @@
 package com.esprit.pi.services;
 
 import com.esprit.pi.entities.ConfirmationToken;
+
 import com.esprit.pi.entities.User;
 import com.esprit.pi.repository.ConfirmationTokenRepository;
 import com.esprit.pi.repository.UserRepository;
@@ -12,7 +13,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import java.text.MessageFormat;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -71,6 +74,17 @@ public class UserService implements UserDetailsService {
 
         emailSenderService.sendEmail(mailMessage);
     }
+    public void sendResetPasswordMail(String userMail, String token) {
+
+        final SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setTo(userMail);
+        mailMessage.setSubject("Reset Password!");
+        mailMessage.setFrom("c7f79b6a12-3fcecc@inbox.mailtrap.io");
+        mailMessage.setText(
+                "To reset your password click on the link" + "<a href=\"http://localhost:8081/restPassword?token="
+                        + token+"\">Reset Password</a>");
+        emailSenderService.sendEmail(mailMessage);
+    }
     public User authenticate(String login,String password) {
 
     	Optional<User> user  = userRepository.findByUsername(password);
@@ -80,5 +94,38 @@ public class UserService implements UserDetailsService {
     	}
     	else
     		return null;
+    }
+    public User findUserByEmail(String email) {
+    	Optional<User> user = userRepository.findUserByEmail(email); 
+    	if(user.isPresent())
+    		return user.get();
+    	else 
+    		return null;
+    }
+    public void UpdateUserPassword(User user,String password) {
+    	user.setPassword(bCryptPasswordEncoder.encode(password));
+    	userRepository.save(user);
+    	
+    }
+    public boolean SendRestpasswordemail(String email) {
+    	System.out.println("test");
+        Optional<User> user = userRepository.findUserByEmail(email);
+
+        if(user.isPresent()){
+        	Optional<ConfirmationToken> confirmationTOken = confirmationTokenService.findConfirmationTokensByUser(user.get());
+        	if(confirmationTOken.isPresent()) {
+				String val = confirmationTOken.
+						get().
+						getConfirmationToken();
+				System.out.println(val);
+				sendResetPasswordMail(email, val);
+				System.out.println("fterwa");
+				return true;
+        	}
+        	else
+        		return false;
+        }
+        else
+            return false;
     }
 }

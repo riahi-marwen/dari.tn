@@ -39,4 +39,5 @@ public class EmailSenderService {
         message.setFrom(from);
         getJavaMailSender().send(message);
     }
+
 }
