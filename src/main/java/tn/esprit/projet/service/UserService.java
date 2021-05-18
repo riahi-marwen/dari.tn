@@ -1,6 +1,8 @@
 package tn.esprit.projet.service;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,7 @@ public class UserService implements IUserService{
 		return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
 	}
 
-	public ResponseEntity<?> getUser(Long id) {
+	public ResponseEntity<?> getUser(int id) {
 		return new ResponseEntity<>(userRepository.findById(id).get(), HttpStatus.OK);
 	}
 
@@ -37,7 +39,7 @@ public class UserService implements IUserService{
 		return new ResponseEntity<>(userRepository.save(user), HttpStatus.OK);
 	}
 
-	public ResponseEntity<?> deleteUser(Long id) {
+	public ResponseEntity<?> deleteUser(int id) {
 		userRepository.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 
@@ -66,7 +68,7 @@ public class UserService implements IUserService{
 	}
 
 
-	public User findUserById(long id) {
+	public User findUserById(int id) {
 		return this.userRepository.findById(id).get();
 	}
 
@@ -76,6 +78,25 @@ public class UserService implements IUserService{
 	}
 
 	
+
+	@Override
+	public int addOrUpdateUser(User user) {
+		userRepository.save(user);
+		return user.getId();
+	}
+
+	@Override
+	public void deleteUserById(int userId)
+	{
+		User user = userRepository.findById(userId).get();
+		userRepository.delete(user);
+	}
+
+	
+	@Override
+	public List<User> getAllUsers() {
+	return (List<User>) userRepository.findAll();
+	}
 
 	
 

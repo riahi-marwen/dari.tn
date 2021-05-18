@@ -14,8 +14,8 @@ import tn.esprit.projet.modal.Produit;
 @Repository("produitRepository")
 public interface ProduitRepository extends CrudRepository<Produit, Long> {
 
-	@Query("SELECT a FROM Produit a WHERE a.nomProduit= :l AND a.categoryProduit= :f" )
-	List<Produit> Search(@Param ("l") String nom,@Param("f") Category f);
+	@Query("SELECT a FROM Produit a WHERE a.nameProduit= :l AND a.categoryProduit= :f" )
+	List<Produit> Search(@Param ("l") String name,@Param("f") Category f);
 
 	@Query("SELECT p FROM Produit p WHERE p.note is not null order by note desc " )
 	List<Produit> getBestProduct();

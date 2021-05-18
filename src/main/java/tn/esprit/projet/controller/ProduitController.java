@@ -60,7 +60,7 @@ public class ProduitController {
 				errorDetails.put("message", "Type de payement non definit");
 				return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST); 
 				}
-			payement.setAmount(produit.getPrixProduit());
+			payement.setAmount(produit.getPriceProduit());
 		    payement.setStatus(OrderStatus.Created);
 			payement.setProduct(produit);
 			return payementService.addPayement(payement);

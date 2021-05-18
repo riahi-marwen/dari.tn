@@ -9,11 +9,12 @@ import javax.persistence.Id;
 
 @Entity
 public class User {
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	private Long id;
-	private String firstName;
-	private String lastName;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+	private int id;
+	private String firstname;
+	private String lastname;
 	private String birthday;
 	private int postalCode;
 	private String city;
@@ -30,6 +31,41 @@ public class User {
 	
 	
 
+	public User() {
+		super();
+	}
+	
+	public User(int id, String firstName, String lastName, String email, String password, Role role, boolean actif) {
+		super();
+		this.id = id;
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.actif = actif;
+	}
+
+	public User(String firstName, String lastName, String email,  Role role, boolean actif) {
+		super();
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.email = email;
+		this.role = role;
+		this.actif = actif;
+	}
+
+	public User(String firstName, String lastName, String email, String password, Role role, boolean actif) {
+		super();
+		this.firstname = firstName;
+		this.lastname = lastName;
+		this.email = email;
+		this.password = password;
+		this.role = role;
+		this.actif = actif;
+	}
+
+
 	public Role getRole() {
 		return role;
 	}
@@ -44,6 +80,22 @@ public class User {
 
 	public void setActif(boolean actif) {
 		this.actif = actif;
+	}
+
+	public String getFirstname() {
+		return firstname;
+	}
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
 
 	public String getBirthday() {
@@ -112,28 +164,30 @@ public class User {
 
 	
 
-	public Long getId() {
+	
+
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return firstname;
 	}
 
 	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+		this.firstname = firstName;
 	}
 
 	public String getLastName() {
-		return lastName;
+		return lastname;
 	}
 
 	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		this.lastname = lastName;
 	}
 
 }

@@ -8,10 +8,65 @@ template="/template/template.xhtml">
 <!-- BEGIN : TP1 JSF Introduction Login -->
 <h:panelGroup>
 <h:form>
-<h:outputText
-value="Bonjour #{usermaroController.login}" />
+<h:outputText value="Bonjour #{usermaroController. authenticatedUser.firstname}
+#{usermaroController. authenticatedUser.lastname}" />
 |
 <h:commandLink value="Déconnexion" action="#{usermaroController.doLogout()}" />
+</h:form>
+</h:panelGroup >
+<h:panelGroup columns="2"><h:form><table>
+<tr><td><h:outputText value="Login (Email)"></h:outputText></td><td><h:inputText
+value="#{usermaroController.email}"></h:inputText></td></tr>
+<tr><td><h:outputText value="Mot de Passe"></h:outputText></td>
+<td><h:inputSecret value="#{usermaroController.password}"></h:inputSecret></td></tr>
+<tr><td><h:outputText value="LastName"></h:outputText></td>
+<td><h:inputText value="#{usermaroController.lastname}"></h:inputText></td></tr>
+<tr><td><h:outputText value="FirstName"></h:outputText></td>
+<td><h:inputText value="#{usermaroController.firstname}"></h:inputText></td></tr>
+<tr>
+<td><h:outputText value="Role"></h:outputText></td>
+<td><h:selectOneMenu value="#{usermaroController.role}">
+<f:selectItem itemLabel="Choisir le Role" itemValue="#{null}" />
+<f:selectItems value="#{usermaroController.roles}" />
+</h:selectOneMenu></td>
+</tr>
+<tr><td><h:outputText value="Actif / Inactif"></h:outputText></td>
+<td><h:selectBooleanCheckbox
+value="#{usermaroController.actif}"></h:selectBooleanCheckbox></td></tr>
+<tr><td colspan="2"> <h:commandButton value="Ajouter User"
+action="#{usermaroController.addUser()}" />
+<h:commandButton value="Mettre A jour User"
+action="#{usermaroController.updateUser()}" /></td></tr>
+</table></h:form></h:panelGroup>
+
+<br />
+<h:panelGroup columns="2">
+<h:form>
+<h:dataTable value="#{usermaroController.users}" var="user" border="1">
+
+<h:column><f:facet name="header"><h:outputText value="Login (Email)" /></f:facet>
+<h:outputText value="#{user.email}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Firstname" /></f:facet>
+<h:outputText value="#{user.firstname}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Lastname" /></f:facet>
+<h:outputText value="#{user.lastname}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Role" /></f:facet>
+<h:outputText value="#{user.role}" /></h:column>
+<h:column><f:facet name="header"><h:outputText value="Actif" /></f:facet>
+<h:outputText value="#{user.actif == true ? 'Oui' : 'Non'}" /></h:column>
+
+
+<h:column>
+<f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#{usermaroController.removeUser(user.id)}"
+value="Supprimer" />
+<h:commandButton
+							action="#{usermaroController.displayUser(user)}"
+							value="Afficher" />
+						
+					</h:column>
+
+</h:dataTable>
 </h:form>
 </h:panelGroup>
 </ui:define>

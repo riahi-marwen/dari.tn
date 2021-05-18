@@ -17,4 +17,7 @@ public interface ProduitService {
 	Produit findById(long id);
     List<Produit> getBestProduct();
 	List<Produit> retrieveProduitByNom(String l, Category f);
+	
+	
+	 
 }

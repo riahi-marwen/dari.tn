@@ -24,8 +24,8 @@ public class Produit {
     private Category categoryProduit;
     
     private Double note;
-    private Double prixProduit;
-    private String nomProduit;
+    private Double priceProduit;
+    private String nameProduit;
     
     private  String codeabarraProduit ;
     
@@ -44,10 +44,11 @@ public class Produit {
    
 
 
+
 	@Override
 	public String toString() {
-		return "Produit [idProduit=" + idProduit + ", categoryProduit=" + categoryProduit + ", prixProduit="
-				+ prixProduit + ", nomProduit=" + nomProduit + ", codeabarraProduit=" + codeabarraProduit + ", image="
+		return "Produit [idProduit=" + idProduit + ", categoryProduit=" + categoryProduit + ", priceProduit="
+				+ priceProduit + ", nameProduit=" + nameProduit + ", codeabarraProduit=" + codeabarraProduit + ", image="
 				+ image + ", dateCreation=" + dateCreation + "]";
 	}
 
@@ -64,18 +65,23 @@ public class Produit {
 	public void setCategoryProduit(Category categoryProduit) {
 		this.categoryProduit = categoryProduit;
 	}
-	public Double getPrixProduit() {
-		return prixProduit;
+
+	public Double getPriceProduit() {
+		return priceProduit;
 	}
-	public void setPrixProduit(Double prixProduit) {
-		this.prixProduit = prixProduit;
+
+	public void setPriceProduit(Double priceProduit) {
+		this.priceProduit = priceProduit;
 	}
-	public String getNomProduit() {
-		return nomProduit;
+
+	public String getNameProduit() {
+		return nameProduit;
 	}
-	public void setNomProduit(String nomProduit) {
-		this.nomProduit = nomProduit;
+
+	public void setNameProduit(String nameProduit) {
+		this.nameProduit = nameProduit;
 	}
+
 	public Date getDateCreation() {
 		return dateCreation;
 	}
@@ -118,8 +124,6 @@ public class Produit {
 		this.note = note;
 	}
 	
-	
-    
 	}
 
 
