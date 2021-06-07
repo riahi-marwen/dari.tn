@@ -1,7 +1,7 @@
 /home/riadh/PI2/src/main/java/com/esprit/pi/config/EmailConfiguration.java
-/home/riadh/PI2/src/main/java/com/esprit/pi/config/LoginSuccessHandler.java
 /home/riadh/PI2/src/main/java/com/esprit/pi/services/ConfirmationTokenService.java
 /home/riadh/PI2/src/main/java/com/esprit/pi/controller/UserController.java
+/home/riadh/PI2/src/main/java/com/esprit/pi/config/LoginSuccessHandler.java
 /home/riadh/PI2/src/main/java/com/esprit/pi/PiApplication.java
 /home/riadh/PI2/src/main/java/com/esprit/pi/config/LoginFilter.java
 /home/riadh/PI2/src/main/java/com/esprit/pi/entities/ConfirmationToken.java
