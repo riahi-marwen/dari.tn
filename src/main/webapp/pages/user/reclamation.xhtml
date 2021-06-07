@@ -1,0 +1,166 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Livraison" />
+
+	<ui:define name="content">
+		<h:head>
+			<title>captcha</title>
+			<script src="https://www.google.com/recaptcha/api.js"></script>
+		</h:head>
+
+		<h:body>
+			<h:panelGroup columns="2">
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText value="Civilité"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.civilite}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Nom"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.nom}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Prénom"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.prenom}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Email"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.email}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Telé"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.tele}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Address"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.address}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Code Postal"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.codepostal}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Ville"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.ville}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Votre Reclamation"></h:outputText></td>
+							<td><h:inputText
+									value="#{reclamationController.description}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Commentaires"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.comments}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="g-recaptcha"
+									data-sitekey="6LfaB9kaAAAAAJrC9Nanh1FrMYzYlpk3WmXpLIqL"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton value="Ajouter reclamtion"
+									action="#{reclamationController.addReclamation()}" /> <h:commandButton
+									value=" Mettre reclamation A jour "
+									action="#{reclamationController.updateReclamation()}" /></td>
+						</tr>
+					</table>
+				</h:form>
+			</h:panelGroup>
+		</h:body>
+
+		<!-- ************Affichage ************************************************************************ -->
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+				<div class="card">
+					<h:dataTable value="#{reclamationController.reclamations}"
+						var="reclamation" border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="civilite" />
+							</f:facet>
+							<h:outputText value="#{reclamation.civilite}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="nom" />
+							</f:facet>
+							<h:outputText value="#{reclamation.nom}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="prenom" />
+							</f:facet>
+							<h:outputText value="#{reclamation.prenom}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Email" />
+							</f:facet>
+							<h:outputText value="#{reclamation.email}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Telé" />
+							</f:facet>
+							<h:outputText value="#{reclamation.tele}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Adresse" />
+							</f:facet>
+							<h:outputText value="#{reclamation.address}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Code postal" />
+							</f:facet>
+							<h:outputText value="#{reclamation.codepostal}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Ville" />
+							</f:facet>
+							<h:outputText value="#{reclamation.ville}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Reclamation" />
+							</f:facet>
+							<h:outputText value="#{reclamation.description}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Commentaires" />
+							</f:facet>
+							<h:outputText value="#{reclamation.comments}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<h:commandButton value="Supprimer"
+								action="#{reclamationController.RemoveReclamation(reclamation.id)}" />
+
+							<h:commandButton value="Afficher"
+								action="#{reclamationController.DisplayReclamation(reclamation)}" />
+
+						</h:column>
+
+
+					</h:dataTable>
+				</div>
+			</h:form>
+		</h:panelGroup>
+
+
+
+	</ui:define>
+
+</ui:composition>

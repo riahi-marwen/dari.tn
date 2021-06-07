@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+		<!--BEGIN : TP1 JSF Introduction Login -->
+		<h:panelGroup>
+			<h:form>
+				<h:outputText value="Bonjour index " />
+			</h:form>
+		</h:panelGroup>
+
+		<!-- 		<h:panelGroup id="username-page">
+			<h:panelGroup layout="block" styleClass="username-page-container">
+
+				<h:form id="usernameForm" name="usernameForm">
+								<h:outputText styleClass="title" value="Type your username " />
+				</h:outputText>
+ 					<h:inputText id="username" value="#{null}" required="true" requiredMessage="Username is required" />
+					</h:inputText>
+
+				</h:form>
+			</h:panelGroup>
+		</h:panelGroup> -->
+
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+				<table>
+					<tr>
+						<td><h:outputText value="name"></h:outputText></td>
+						<td><h:inputText id='name' value="#{name}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td colspan="2"><h:commandButton value="ok"  onclick="connect();"/> 
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</h:panelGroup>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+		<script type="text/javascript" src="/js/main.js"></script>
+		
+	</ui:define>
+</ui:composition>

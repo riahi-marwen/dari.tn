@@ -1,0 +1,24 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/template.xhtml">
+	<ui:param name="page_name" value="Accueil" />
+	<ui:define name="content">
+
+		<h:head>
+			<title>captcha</title>
+			<script src="https://www.google.com/recaptcha/api.js"></script>
+		</h:head>
+
+		<h:body>
+			<h:form> 
+ 				User Name <h:inputText value="#{login.user_name}" required="true"
+					requiredMessage="Enter Name"></h:inputText>
+				<div class="g-recaptcha" data-sitekey="6LfaB9kaAAAAAJrC9Nanh1FrMYzYlpk3WmXpLIqL"></div>
+				<h:commandButton value="Submit" action="#{login.submit_form}"></h:commandButton>
+			</h:form>
+		</h:body>
+
+	</ui:define>
+</ui:composition>

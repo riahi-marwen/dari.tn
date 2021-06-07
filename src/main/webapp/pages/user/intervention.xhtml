@@ -1,0 +1,104 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Intervention" />
+
+	<ui:define name="content">
+		<h:panelGroup columns="2">
+			<h:form>
+				<table>
+					<tr>
+						<td><h:outputText value="Réference"></h:outputText></td>
+						<td><h:inputText value="#{interventionController.titre}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Service"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{interventionController.service}">
+								<f:selectItem itemLabel="Choisir type de service"
+									itemValue="#{null}" />
+								<f:selectItems value="#{interventionController.services}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Statut"></h:outputText></td>
+						<td><h:selectOneMenu value="#{interventionController.statut}">
+								<f:selectItem itemLabel="Choisir statut" itemValue="#{null}" />
+								<f:selectItems value="#{interventionController.statuts}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Reclamation"></h:outputText></td>
+						<td><h:selectOneMenu
+								value="#{interventionController.reclamations}">
+								<f:selectItem itemLabel="Choisir reclamation"
+									itemValue="#{null}" />
+								<f:selectItems value="#{interventionController.reclamations}" />
+							</h:selectOneMenu></td>
+					</tr>
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter"
+								action="#{interventionController.addIntervention()}" /> <h:commandButton
+								value=" Mettre reclamation A jour "
+								action="#{interventionController.updateIntervention()}" /></td>
+					</tr>
+				</table>
+			</h:form>
+		</h:panelGroup>
+
+		<!-- ************Affichage ************************************************************************ -->
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+				<div class="card">
+					<h:dataTable value="#{interventionController.interventions}"
+						var="intervention" border="1">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Réference" />
+							</f:facet>
+							<h:outputText value="#{intervention.titre}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Statut de l'intervention" />
+							</f:facet>
+							<h:outputText value="#{intervention.statut}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Service Correspondant" />
+							</f:facet>
+							<h:outputText value="#{intervention.service}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Reclamation correspondante" />
+							</f:facet>
+							<h:outputText value="#{intervention.reclamations}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Action" />
+							</f:facet>
+							<h:commandButton value="Supprimer"
+								action="#{interventionController.RemoveIntervention(intervention.id)}" />
+
+							<h:commandButton value="Afficher"
+								action="#{interventionController.DisplayIntervention(intervention)}" />
+
+						</h:column>
+					</h:dataTable>
+				</div>
+			</h:form>
+		</h:panelGroup>
+
+
+
+	</ui:define>
+
+</ui:composition>
