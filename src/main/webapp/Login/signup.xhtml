@@ -2,54 +2,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets" 
-	>
-	<h:head>
-		<h:outputStylesheet library="test" name="css/bootstrap.min.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/font-awesome.min.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/nice-select.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/owl.carousel.min.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/jquery-ui.min.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/slicknav.min.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/flaticon.css"></h:outputStylesheet>
-		<h:outputStylesheet library="test" name="css/style.css"></h:outputStylesheet>
-		<meta charset="UTF-8" />
-
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-		<title>Reset your Password</title>
-		<!-- Font Icon -->
-		<link rel="stylesheet"
-			  href="fonts/material-icon/css/material-design-iconic-font.min.css" />
-		<!-- Main css -->
-		<link rel="stylesheet" href="css/style.css" />
-	</h:head>
-	<ui:param name="page_name" value="Signup" />
-	<body>
-	<div id="preloder">
-		<div class="loader"></div>
-	</div>
-	<!-- Header Section Begin -->
-	<!-- Header Section End -->
-	<header class="header-section">
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="logo">
-						<a href="./index.html"> <p:graphicImage
-								name="test/img/logo.png" alt="" />
-						</a>
-					</div>
-
-					<div id="mobile-menu-wrap"></div>
-				</div>
-			</div>
-		</div>
-	</header>
-
-		<div class="main">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+				template="/template/template.xhtml">
+	<ui:define name="content">
+	<div class="main">
 			<section class="signup">
 
 				<div class="container">
@@ -130,13 +86,6 @@
 									</div>
 								</div>
 
-								<div class="form-group">
-									<input type="checkbox" name="agree-term" id="agree-term"
-										class="agree-term" /> <label for="agree-term"
-										class="label-agree-term"><span></span>I agree all
-										statements in <a href="#" class="term-service">Terms of
-											service</a></label>
-								</div>
 
 								<div class="form-group form-button">
 									<p:commandButton class="form-submit" value="Sing up"
@@ -156,27 +105,7 @@
 					</div>
 				</div>
 			</section>
-		</div>
-
-	<footer class="footer-section">
-
-		<div class="col-lg-12 text-center sp-60">
-			<p:graphicImage name="test/img/only-logo.png" alt="" />
-		</div>
-
-	</footer>
-	<!-- JS -->
-
-	<script src="/test/js/jquery-3.3.1.min.js"></script>
-	<script src="/test/js/bootstrap.min.js"></script>
-	<script src="/test/js/jquery.nice-select.min.js"></script>
-	<script src="/test/js/owl.carousel.min.js"></script>
-	<script src="/test/js/jquery-ui.min.js"></script>
-	<script src="/test/js/jquery.slicknav.js"></script>
-	<script src="/test/js/main.js"></script>
-	<script src="/login/vendor/jquery/jquery.min.js"></script>
-
-	<script src="/login/js/main.js"></script>
-	</body>
+	</div>
+	</ui:define>
 	<!-- This templates was made by Colorlib (https://colorlib.com) -->
-		</ui:composition>
+</ui:composition>

@@ -1,8 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 xmlns:h="http://java.sun.com/jsf/html"
-xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
 xmlns:ui="http://java.sun.com/jsf/facelets">
-	<head>
+	<h:head>
 		<h:outputStylesheet library="test" name="css/bootstrap.min.css"/>
 		<h:outputStylesheet library="test" name="css/font-awesome.min.css"/>
 		<h:outputStylesheet library="test" name="css/nice-select.css"/>
@@ -14,16 +14,43 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 		<h:outputStylesheet library="test" name="css/style.css"/>
 		<h:outputStylesheet library="test" name="fonts/material-icon/css/material-design-iconic-font.min.css"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="UTF-8" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+		<!-- Font Icon -->
+		<link rel="stylesheet"
+			  href="fonts/material-icon/css/material-design-iconic-font.min.css" />
+		<!-- Main css -->
+		<link rel="stylesheet" href="css/style.css" />
 		<title>#{page_name}</title>
-	</head>
+	</h:head>
 <body>
 
 
+<div id="preloder">
+	<div class="loader"></div>
+</div>
 
-		<ui:include src="/template/header.xhtml" />
-		<ui:insert name="menu" />
+
+	<header>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="logo">
+						<a href="./index.html"> <p:graphicImage
+								name="test/img/logo.png" alt="" />
+						</a>
+					</div>
+
+					<div id="mobile-menu-wrap"></div>
+				</div>
+			</div>
+		</div>
+	</header>
 		<ui:insert name="content" />
-		<ui:include src="/template/footer.xhtml" />
 
 		<h:outputScript library="test" name="js/jquery-3.3.1.min.js"/>
 		<h:outputScript library="test" name="js/bootstrap.min.js"/>
@@ -36,5 +63,6 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
 
 		<script src="../assets/vendor/jquery/jquery.min.js"></script>
 		<script src="../assets/js/main.js"></script>
+<ui:insert name="footer" />
 </body>
 </html>
