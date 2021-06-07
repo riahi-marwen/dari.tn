@@ -1,16 +1,83 @@
+
+
+
+
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
 
-	<ui:param name="page_name" value="Livraison" />
+	<ui:param name="page_name" value="Gestion livraison" />
 
 	<ui:define name="content">
 
+		<h:form>
+			<div class="card crud-demo">
+				<p:growl id="messages" showDetail="true" />
 
-		<p:commandButton type="button" value="lIVRAISON" styleClass="rounded-button" />
-		
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:linkButton outcome="/pages/admin/ajoutLivraison.xhtml"
+							value="Ajouter une nouvelle livraison" icon="pi pi-star"
+							style="margin-right:20px;">
+
+						</p:linkButton>
+
+
+					</p:toolbarGroup>
+
+				</p:toolbar>
+			</div>
+		</h:form>
+
+		<div class="card">
+			<h:form id="form">
+				<p:dataTable value="#{livraisonCo.livraisons}" var="y" rowKey="#{y.idLivraison}" selection="#{livraisonCo.selectedLivraisons}" selectionMode="single">
+
+					<f:facet name="header">
+
+					</f:facet>
+					<p:column headerText="id">
+						<h:outputText value="#{y.idLivraison}" />
+					</p:column>
+					<p:column headerText="Date de Livraison">
+						<h:outputText value="#{y.dateLivraison}" />
+					</p:column>
+					<p:column headerText="Etat de livraison ">
+						<h:outputText value="#{y.etat}" />
+					</p:column>
+					<p:column headerText="Adresse de Livraison ">
+						<h:outputText value="#{y.adresse}" />
+					</p:column>
+					<p:column headerText="livreur affecté">
+						<h:outputText value="#{y.livreurs.nomLivreur}" />
+					</p:column>
+
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton value="Supprimer"
+							action="#{livraisonCo.RemoveLivraison(y.idLivraison)}" />
+						
+							
+					</p:column>
+
+
+
+				</p:dataTable>
+				
+	
+			</h:form>
+		</div>
+
+
 	</ui:define>
 
 </ui:composition>
+
+
+

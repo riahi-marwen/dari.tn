@@ -39,7 +39,7 @@ public class LivraisonController {
 	}
 
 	@DeleteMapping ("/deleteLivraison/{livId}")
-	public void deleteLivraison (@PathVariable ("livId") String idLivraison ) {
+	public void deleteLivraison (@PathVariable ("livId") int idLivraison ) {
 		sliv.deleteLivraison(idLivraison);
 	}
 	

@@ -8,13 +8,9 @@ import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-
 import edu.esprit.immo.Dari.entities.Livreur;
 import edu.esprit.immo.Dari.entities.Secteur;
-import edu.esprit.immo.Dari.entities.Secteur;
-import edu.esprit.immo.Dari.repository.LivreurRepository;
 import edu.esprit.immo.Dari.service.LivreurService;
-import edu.esprit.immo.Dari.service.LivreurServiceImpl;
 @ManagedBean
 @Scope(value = "session")
 @Component(value = "livreurCo")
@@ -22,13 +18,12 @@ import edu.esprit.immo.Dari.service.LivreurServiceImpl;
 @Join(path = "/", to = "/welcome.jsf")
 
 public class LivreurComtrollerImpl {
-	//@Autowired
-	//public LivreurRepository livreurRepo ; 
 	
 	 @Autowired
 	 LivreurService livreurService; 
 	 public List<Livreur> livreur; 
-	 public List<Livreur> getLivreurs(){ return livreurService.retieveAllLivreur(); }
+	 public List<Livreur> getLivreurs(){
+		 return livreurService.retieveAllLivreur(); }
 	
 	
 	public int idLivreur ; 
@@ -174,109 +169,16 @@ public class LivreurComtrollerImpl {
 	}
 	
 	
-	
-
-	
-    /*
-	public Livreur getSelectedLivreurs() {
-		return selectedLivreurs;
-	}
-	public void setSelectedLivreurs(Livreur selectedLivreurs) {
-		this.selectedLivreurs = selectedLivreurs;
-	}
-
-	
-	public void setLivreurRepo(LivreurRepository livreurRepo) {
-		this.livreurRepo = livreurRepo;
-	}
-	public int getIdLivreur() {
-		return idLivreur;
-	}
-	public void setIdLivreur(int idLivreur) {
-		this.idLivreur = idLivreur;
-	}
-	public String getNomLivreur() {
-		return nomLivreur;
-	}
-	public void setNomLivreur(String nomLivreur) {
-		this.nomLivreur = nomLivreur;
-	}
-	public String getEmailLivreur() {
-		return emailLivreur;
-	}
-	public void setEmailLivreur(String emailLivreur) {
-		this.emailLivreur = emailLivreur;
-	}
-	public boolean isDisponnible() {
-		return disponnible;
-	}
-	public void setDisponnible(boolean disponnible) {
-		this.disponnible = disponnible;
-	}
-	public SecteurLivreur getSecteur() {
-		return secteur;
-	}
-	public void setSecteur(SecteurLivreur secteur) {
-		this.secteur = secteur;
-	} 
-	
-	
-	
-	public void setLivreurs(List<Livreur> livreurs) {
-		this.livreurs = livreurs;
-	}
-
-	@Autowired
-	LivreurService LivreurSer ; 
-	
-	public SecteurLivreur[] getSecteurLivreurs () {
-		return SecteurLivreur.values();
-	}
-	
-	
-	 
-	public String AddLivreur() {
-		
-		LivreurSer.addLivreur(new Livreur(idLivreur,nomLivreur,emailLivreur,disponnible,secteur, null));
-		return "Livreur Ajouté avec succes " ;
-		
-		
-	}
-	
-	public void RemoveLivreur (int idLivreur )
+	public String  navigToAjouterLivr()
 	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/ajoutLivreur.xhtml";
+		return navigateTo;	
 		
-	LivreurSer.deleteLivreur(idLivreur);	
 	}
 
-	public void DisplayLivreur (Livreur livreur) {
-		
-		this.setIdLivreur(livreur.getIdLivreur());
-		this.setNomLivreur(livreur.getNomLivreur());
-		this.setEmailLivreur(livreur.getEmailLivreur());
-		this.setDisponnible(livreur.isDisponnible());
-		this.setSecteur(livreur.getSecteur());
-	}
 	
-	public String navigToLivreur()
-	{
-		String navigateTo = null ; 
-		navigateTo ="";
-		return navigateTo ;
-		
-	}
-	
-	public void updateLivreur()
-	{
-		LivreurSer.addLivreur(new Livreur( idLivreur,nomLivreur,emailLivreur,disponnible,secteur, null));
-	}
-	
-	 public List<Livreur> getLivreurs()
-	 {
-		return LivreurSer.retieveAllLivreur() ;
-	 }
-	 */
-	
+   	
 	 }
 	 
 	 

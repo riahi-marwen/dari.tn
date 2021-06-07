@@ -34,7 +34,7 @@ public class Livraison implements Serializable {
 	
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_livraison")
-	private Date dateLivraison;
+	public Date dateLivraison;
 	
 	@Enumerated(EnumType.STRING)
 	Etat etat ; 
@@ -117,14 +117,7 @@ public class Livraison implements Serializable {
 		this.livreurs = livreurs;
 	}
 
-	public Livraison( Date dateLivraison, Etat etat, Secteur adresse) {
-		super();
-		
-		this.dateLivraison = dateLivraison;
-		this.etat = etat;
-		
-		this.adresse = adresse;
-	}
+	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

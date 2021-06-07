@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.esprit.immo.Dari.entities.Adresse;
 import edu.esprit.immo.Dari.entities.Livraison;
 import edu.esprit.immo.Dari.entities.Livreur;
 import edu.esprit.immo.Dari.entities.Secteur;
@@ -44,8 +43,8 @@ public class LivraisonServiceImpl implements LivraisonService {
 	}
 
 	@Override
-	public void deleteLivraison(String id) {
-		LivRepo.deleteById(Integer.parseInt(id)) ; 
+	public void deleteLivraison(int id) {
+		LivRepo.deleteById(id) ; 
 	}
 
 	@Override

@@ -34,7 +34,7 @@
 
 		<div class="card">
 			<h:form id="form">
-				<p:dataTable value="#{livreurCo.livreurs}" var="x">
+				<p:dataTable value="#{livreurCo.livreurs}" var="x" rowKey="#{x.idLivreur}" selection="#{livreurCo.selectedLivreurs}" selectionMode="single">
 
 					<f:facet name="header">
 
@@ -42,7 +42,7 @@
 					<p:column headerText="id">
 						<h:outputText value="#{x.idLivreur}" />
 					</p:column>
-					<p:column headerText="Nom Livreur">
+					<p:column headerText="Nom et Prenom du Livreur">
 						<h:outputText value="#{x.nomLivreur}" />
 					</p:column>
 					<p:column headerText="Email ">
@@ -60,16 +60,26 @@
 						<f:facet name="header">
 							<h:outputText value="Action" />
 						</f:facet>
-						<h:commandButton value="Supprimer"
+						<h:commandButton value="Supprimer" 
 							action="#{livreurCo.RemoveLivreur(x.idLivreur)}" />
-						<h:commandButton value="Afficher"
-							action="#{livreurCo.DisplayLivreur(x)}" />
+							
+						
+						<h:commandButton value="Afficher" action="#{livreurCo.DisplayLivreur(x)}" >
+    
+  </h:commandButton>
+  <p:linkButton outcome="/pages/admin/ajoutLivreur.xhtml"
+							value="Modifier" icon="pi pi-star"
+							style="margin-right:20px;">
 
+						</p:linkButton>
+  
+							
 					</p:column>
 
 
 
 				</p:dataTable>
+				
 	
 			</h:form>
 		</div>
