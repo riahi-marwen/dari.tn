@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.stripe.model.Product;
+
 import tn.esprit.projet.modal.Category;
 import tn.esprit.projet.modal.Produit;
 import tn.esprit.projet.modal.UploadFile;
@@ -23,9 +25,9 @@ public class ProduitServiceImpl implements ProduitService {
 	UploadFileRepository  uploadFileRepository;
 	
 	@Override
-	public Produit addProduit(Produit produit) {
+	public String addProduit(Produit produit) {
 		produitRepository.save(produit) ;
-		return produit;
+		return "fonction";
 	}
 	@Override
 	public String DeleteProduit(long id) {
@@ -35,8 +37,9 @@ public class ProduitServiceImpl implements ProduitService {
 	}
 
 	@Override
-	public Produit updateProduit (Produit produit) {
-		return produitRepository.save(produit);
+	public String updateProduit (Produit produit) {
+		 produitRepository.save(produit);
+		 return "valid";
 	}
 	
 	@Override
@@ -63,15 +66,14 @@ public class ProduitServiceImpl implements ProduitService {
 	public Produit findById(long id) {
 		return produitRepository.findById(id).orElse(null);
 	}
-
-
 	@Override
-	public List<Produit> retrieveProduitByNom(String l,Category f) {
-		return this.produitRepository.Search(l,f);
+	public List<Produit> retrieveProduitByNom(String l, Category f) {
+		// TODO Auto-generated method stub
+		return null;
 	}
-
-
-
+	
+	
+	
 
 
 }

@@ -38,27 +38,66 @@ public class UserJsfController {
 	public Role[] getRoles() { return Role.values(); }
 	private Integer userIdToBeUpdated;
 	private List<User> users;
-	public void addUser() {
+	public String addUser() {
+		if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
 		userService.addOrUpdateUser(new User(lastname, firstname, email, password, role, actif));
+		return "null";
 		}
-	public void removeUser(int UserId)
-	{
-		userService.deleteUserById(UserId);
-	}
-	/* methode navigate*/
-	public String navigToexemple2()
+	public String removeUser(int UserId)
 	{
 		String navigateTo = "null";
-		navigateTo = "/pages/admin/exemple2.xhtml";
+		if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
+
+		userService.deleteUserById(UserId);
+		return navigateTo; 
+	}
+	
+	public String doLogin() {
+
+		String navigateTo = "null";
+		authenticatedUser=userService.authenticate(login, password);
+		if (authenticatedUser != null && authenticatedUser.getRole() == Role.ADMIN) {
+			navigateTo = "/pages/admin/welcome.xhtml?faces-redirect=true";
+			loggedIn = true;
+		}		
+
+		else
+		{
+			if (authenticatedUser != null && authenticatedUser.getRole() == Role.USER)
+			{
+			
+				navigateTo = "/pages/users/product.xhtml";
+				loggedIn = true;
+				
+			}
+			else
+			{
+				FacesMessage facesMessage =
+						new FacesMessage("Login Failed: Please check your username/password and try again.");
+				FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
+			}
+			
+			
+			
+		}
 		return navigateTo;	
 	}
 	
-	/*public String  navigToProduit()
+	
+	public String  navigToProduit()
 	{
 		String navigateTo = "null";
 		navigateTo = "/pages/admin/produit.xhtml";
 		return navigateTo;	
 		
+	}
+	
+	/* methode navigate*/
+	/*public String navigToProduit()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/product.xhtml";
+		return navigateTo;	
 	}
 	public String  navigToCategory()
 	{
@@ -66,12 +105,12 @@ public class UserJsfController {
 		navigateTo = "/pages/admin/category.xhtml";
 		return navigateTo;	
 		
-	}*/
-	public String doLogin() {
+	}
+	/*public String doLogin() {
 		String navigateTo = "null";
 		authenticatedUser=userService.authenticate(login, password);
 		if (authenticatedUser != null && authenticatedUser.getRole() == Role.ADMIN) {
-		navigateTo = "/pages/admin/exemple.xhtml?faces-redirect=true";
+		navigateTo = "/pages/admin/product.xhtml?faces-redirect=true";
 		loggedIn = true; }
 		else {
 		FacesMessage facesMessage =
@@ -81,7 +120,7 @@ public class UserJsfController {
 		FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
 		}
 		return navigateTo;
-		}
+		}*/
 	    public String doLogout() {
 		FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
 		return "/login.xhtml?faces-redirect=true";
@@ -126,11 +165,13 @@ public class UserJsfController {
 	    /*public void setUserIdToBeUpdated(int userIdToBeUpdated) {
 			this.userIdToBeUpdated = userIdToBeUpdated;
 		}*/
-		public void updateUser() 
+		public String updateUser() 
 		{ 
-		
-			userService.addOrUpdateUser(new User(userIdToBeUpdated, lastname, firstname, email, password, role, actif)); 
-
+			String navigateTo = "null";
+			
+			if (authenticatedUser==null || !loggedIn) return "/login.xhtml?faces-redirect=true";
+			userService.addOrUpdateUser(new User(userIdToBeUpdated, lastname, firstname, email, password, role, actif));
+			return "null";
 		}
 	  //getter && setter
 		public IUserService getUserService() {

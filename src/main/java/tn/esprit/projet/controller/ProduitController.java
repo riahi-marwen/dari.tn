@@ -102,7 +102,7 @@ public class ProduitController {
 			errorDetails.put("message", "category non definit");
 			return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
 		}
-			Produit produit = produitService.addProduit(a);
+			String produit = produitService.addProduit(a);
 		return produit ; 
 	}
 	

@@ -19,17 +19,23 @@ public class Category {
     @GeneratedValue (strategy=GenerationType.IDENTITY)
     private Long idCategory;
 	@NotBlank
-    private String nomCategory;
+    private String nameCategory;
     
     
     
+	
+	public Category(Long idCategory, @NotBlank String nameCategory) {
+		super();
+		this.idCategory = idCategory;
+		this.nameCategory = nameCategory;
+	}
 	@Override
 	public String toString() {
-		return "Category [idCategory=" + idCategory + ", nomCategory=" + nomCategory + "]";
+		return "Category [idCategory=" + idCategory + ", nameCategory=" + nameCategory + "]";
 	}
-	public Category(String nomCategory) {
+	public Category(String nameCategory) {
 		super();
-		this.nomCategory = nomCategory;
+		this.nameCategory = nameCategory;
 	}
 	public Category() {
 		super();
@@ -40,11 +46,11 @@ public class Category {
 	public void setIdCategory(Long idCategory) {
 		this.idCategory = idCategory;
 	}
-	public String getNomCategory() {
-		return nomCategory;
+	public String getNameCategory() {
+		return nameCategory;
 	}
-	public void setNomCategory(String nomCategory) {
-		this.nomCategory = nomCategory;
+	public void setNameCategory(String nameCategory) {
+		this.nameCategory = nameCategory;
 	}
     
     

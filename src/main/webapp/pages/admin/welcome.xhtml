@@ -5,6 +5,35 @@ xmlns:ui="http://java.sun.com/jsf/facelets"
 template="/template/template.xhtml">
 <ui:param name="page_name" value="Accueil" />
 <ui:define name="content">
+		<!-- navbaaaaar  -->
+
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DARI.TN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add rent </a>
+      <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add cart   </button>
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="product" action="#{usermaroController.navigToProduit()}" />
+      
+      <h:commandButton id="btny" class="btn btn-outline-secondary" value="Category"   />
+      
+		
+    </div>
+  </div>
+</nav>
+
+</h:form>
+
+<!-- END navbaaaar  -->
+
+
+
 <!-- BEGIN : TP1 JSF Introduction Login -->
 <h:panelGroup>
 <h:form>

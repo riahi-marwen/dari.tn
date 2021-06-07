@@ -1,0 +1,145 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+		
+		<!-- navbaaaaar  -->
+
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DARI.TN </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"  onclick="#{usermaroController.navigToRent()}"  href="#">add product </a>
+      <a class="nav-item nav-link" action="#{usermaroController.navigToRent()}">add ---</a>
+    
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="category" />
+      <h:commandButton id="btnn" class="btn btn-outline-secondary" value="product" />
+      
+      <h:commandButton id="btny" class="btn btn-outline-secondary" value="cart"   />
+      
+		
+    </div>
+  </div>
+</nav>
+
+</h:form>
+
+<!-- END navbaaaar  -->
+<h:panelGroup columns="2">
+			<h:form>
+				
+				<table>
+					<tr>
+						<td><h:outputText value="nameProduit"></h:outputText></td>
+						<td><h:inputText value="#{venteProduitController.nameProduit}"></h:inputText></td>
+					</tr>				
+					
+					<tr>
+						<td><h:outputText value="priceProduit"></h:outputText></td>
+						<td><h:inputText value="#{venteProduitController.priceProduit}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="quantity"></h:outputText></td>
+						<td><h:inputText value="#{venteProduitController.quantity}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="dateCreation"></h:outputText></td>
+						<td><h:inputText value="#{venteProduitController.dateCreation}"></h:inputText></td>
+					</tr>					
+					<tr>
+						<td><h:outputText value="note"></h:outputText></td>
+						<td><h:inputText value="#{venteProduitController.note}"></h:inputText></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter produit"
+								action="#{venteProduitController.addProduit()}" />
+								 <h:commandButton value=" Mettre A jour produit"
+								 action="#{venteProduitController.updateProduit()}"/></td>
+					</tr>
+
+				</table>
+			</h:form>
+		</h:panelGroup>
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+			 <div class="card">
+				<h:dataTable value="#{venteProduitController.pts}" var="produit"
+					border="1">
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="name Produit" />
+						</f:facet>
+						<h:outputText value="#{produit.nameProduit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="quantity" />
+						</f:facet>
+						<h:outputText value="#{produit.quantity}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="priceProduit" />
+						</f:facet>
+						<h:outputText value="#{produit.priceProduit}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="dateCreation" />
+						</f:facet>
+						<h:outputText value="#{produit.dateCreation}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="note" />
+						</f:facet>
+						<h:outputText value="#{produit.note}" />
+					</h:column>
+		
+					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
+					<!-- BEGIN :  TP4 JSF Modifier Employé -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							
+							value="Supprimer"
+							action="#{venteProduitController.removeProduit(produit.idProduit)}" />
+							
+						<h:commandButton
+							
+							value="Afficher" 
+							action="#{venteProduitController.displayProduit(produit)}"/>
+						
+					</h:column>
+					
+
+	
+
+		
+</h:dataTable>
+</div>
+</h:form>
+</h:panelGroup>
+	
+	</ui:define>
+	
+	
+	
+	
+
+</ui:composition>

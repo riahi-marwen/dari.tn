@@ -10,7 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Pattern;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table (name="produits")
@@ -31,18 +34,34 @@ public class Produit {
     
     @OneToOne(mappedBy = "produit")
     private UploadFile image ;
-    
+    @Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern="dd-MM-yyyy")
     private Date dateCreation;
     
  
 	private  int quantity;
     
-    public Produit() {
+   
+	public Produit() {
 		super();
 		
 	}
-   
 
+
+	public Produit(Double note, Double priceProduit, String nameProduit, Date dateCreation, int quantity) {
+		super();
+		this.note = note;
+		this.priceProduit = priceProduit;
+		this.nameProduit = nameProduit;
+		this.dateCreation = dateCreation;
+		this.quantity = quantity;
+	}
+
+
+	public Produit(Long produitIdToBeUpdated, Double note2, Double priceProduit2, String nameProduit2,
+			Date dateCreation2, int quantity2) {
+		// TODO Auto-generated constructor stub
+	}
 
 
 	@Override

@@ -5,18 +5,21 @@ import java.util.List;
 import tn.esprit.projet.modal.Category;
 import tn.esprit.projet.modal.Produit;
 import tn.esprit.projet.modal.UploadFile;
+import tn.esprit.projet.modal.User;
 
 
 public interface ProduitService {
 
-	Produit addProduit(Produit produit);
-	String DeleteProduit(long id);
-	Produit updateProduit(Produit produit);
-	List<Produit> retrieveAllProduit();
-	UploadFile saveImage(UploadFile p);
-	Produit findById(long id);
-    List<Produit> getBestProduct();
-	List<Produit> retrieveProduitByNom(String l, Category f);
+	public String addProduit(Produit produit);
+	public String DeleteProduit(long id);
+	public String updateProduit(Produit produit);
+	public List<Produit> retrieveAllProduit();
+	public UploadFile saveImage(UploadFile p);
+	public Produit findById(long id);
+    public List<Produit> getBestProduct();
+	public List<Produit> retrieveProduitByNom(String l, Category f);
+	//String AjouterPrduit (Produit  produit);
+	/*public void deleteProduitById(Long idProduit);*/
 	
 	
 	 
