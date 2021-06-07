@@ -117,7 +117,7 @@ public class ProduitController {
 
 	@PutMapping("/modify-Produit")
 	@ResponseBody
-	public Produit modifyProduit(@RequestBody Produit produit) {
+	public String modifyProduit(@RequestBody Produit produit) {
 		return produitService.updateProduit(produit);
 	}
 
