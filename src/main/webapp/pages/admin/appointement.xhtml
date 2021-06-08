@@ -8,9 +8,69 @@
 
 	<ui:define name="content">
 
+		<h:form>
+			<div class="card crud-demo">
+				<p:growl id="messages" showDetail="true" />
 
-		<p:commandButton type="button" value="RDV" styleClass="rounded-button" />
-		
+				<p:toolbar>
+					<p:toolbarGroup>
+						<p:linkButton outcome="/pages/admin/ajoutApp.xhtml"
+							value="Ajouter un nouveau RDV" icon="pi pi-star"
+							style="margin-right:20px;">
+
+						</p:linkButton>
+
+
+					</p:toolbarGroup>
+
+				</p:toolbar>
+			</div>
+		</h:form>
+
+		<div class="card">
+			<h:form id="form">
+				<p:dataTable value="#{appCo.appointments}" var="z" rowKey="#{z.idAppt}" >
+
+					<f:facet name="header">
+
+					</f:facet>
+					<p:column headerText="id">
+						<h:outputText value="#{z.idAppt}" />
+					</p:column>
+					<p:column headerText="Date de RDV">
+						<h:outputText value="#{z.dateAppt}" />
+					</p:column>
+					<p:column headerText="Heure de RDV ">
+						<h:outputText value="#{z.time}" />
+					</p:column>
+					<p:column headerText="Nom du benificaire ">
+						<h:outputText value="#{z.nomRdv}" />
+					</p:column>
+					<p:column headerText="E-mail du benificaire">
+						<h:outputText value="#{z.emailRdv}" />
+					</p:column>
+
+
+					<p:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton value="Supprimer"
+							action="#{appCo.removeAppointment (z.idAppt)}" />
+						
+							
+					</p:column>
+
+
+
+				</p:dataTable>
+				
+	
+			</h:form>
+		</div>
+
+
 	</ui:define>
+
 
 </ui:composition>

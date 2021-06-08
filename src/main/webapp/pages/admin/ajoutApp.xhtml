@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Livraison" />
+
+	<ui:define name="content">
+
+		<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Livraison" />
+
+	<ui:define name="content">
+
+		<h:panelGroup columns="2">
+			<h:form>
+				<table>
+
+					<tr>
+						<td><h:outputText value="Date de RDV"></h:outputText></td>
+						<td><h:inputText  type="date" value="#{appCo.dateAppt}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Heure de RDV"></h:outputText></td>
+						<td><div class="col-md-6 form-group">
+                
+                <h:inputText class="form-control"  type="time" value="#{appCo.time}">
+                 <f:convertDateTime pattern="HH:mm"/>
+                </h:inputText>
+            </div>
+						
+						</td>
+					</tr>
+					<tr>
+						<td><h:outputText value="nom Benificaire "></h:outputText></td>
+						<td><h:inputText value="#{appCo.nomRdv}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="email Benificaire "></h:outputText></td>
+						<td><h:inputText value="#{appCo.emailRdv}"></h:inputText></td>
+					</tr>
+					
+					
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter"
+								action="#{appCo.addAppointment()}" /> <h:commandButton
+								value=" Mettre reclamation A jour "
+								action="#appCo.updateAppointmen}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</h:panelGroup>
+
+
+	</ui:define>
+
+</ui:composition>
+
+
+
+    
+
+	</ui:define>
+	
+
+</ui:composition>

@@ -34,7 +34,7 @@ public class AppointmentController {
 	
 	@DeleteMapping("/deleteApp/{appId}")
 
-	public void deleteApp (@PathVariable("appId") String idAppt)
+	public void deleteApp (@PathVariable("appId") int idAppt)
 	{
 		sapp.deleteApp(idAppt);
 		

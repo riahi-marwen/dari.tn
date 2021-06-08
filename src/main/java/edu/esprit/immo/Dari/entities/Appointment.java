@@ -28,14 +28,19 @@ public class Appointment implements Serializable{
 	@Column(name = "date_appt")
 	private Date dateAppt;
 	
+	
+	
+	@Temporal(TemporalType.TIME)
 	@Column
-	private String password;
+	private Date time;
 	
 	@Column
-	private String time;
+	private String nomRdv;
 	
-	@ManyToOne
-	User users ;
+	@Column 
+	private String emailRdv; 
+	
+	
 
 	public int getIdAppt() {
 		return idAppt;
@@ -53,28 +58,33 @@ public class Appointment implements Serializable{
 		this.dateAppt = dateAppt;
 	}
 
-	public String getPassword() {
-		return password;
-	}
+	
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getTime() {
+	public Date getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(Date time) {
 		this.time = time;
 	}
 
-	public User getUsers() {
-		return users;
+	
+	
+
+	public String getNomRdv() {
+		return nomRdv;
 	}
 
-	public void setUsers(User users) {
-		this.users = users;
+	public void setNomRdv(String nomRdv) {
+		this.nomRdv = nomRdv;
+	}
+
+	public String getEmailRdv() {
+		return emailRdv;
+	}
+
+	public void setEmailRdv(String emailRdv) {
+		this.emailRdv = emailRdv;
 	}
 
 	public Appointment() {
@@ -82,14 +92,26 @@ public class Appointment implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Appointment(int idAppt, Date dateAppt, String password, String time, User users) {
+	public Appointment(int idAppt, Date dateAppt, Date time) {
 		super();
 		this.idAppt = idAppt;
 		this.dateAppt = dateAppt;
-		this.password = password;
 		this.time = time;
-		this.users = users;
+		
+		
+		
 	}
+
+	public Appointment(int idAppt, Date dateAppt, Date time, String nomRdv, String emailRdv) {
+		super();
+		this.idAppt = idAppt;
+		this.dateAppt = dateAppt;
+		this.time = time;
+		this.nomRdv = nomRdv;
+		this.emailRdv = emailRdv;
+	}
+	
+	
 	
 	
 	

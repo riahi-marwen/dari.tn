@@ -34,10 +34,10 @@ public class AppointmentServiceImpl implements AppointmentService{
 	}
 
 	@Override
-	public void deleteApp(String id) {
+	public void deleteApp(int id) {
 
 		 
-		appointmentRepository.deleteById(Integer.parseInt(id));
+		appointmentRepository.deleteById(id);
 		
 	}
 
