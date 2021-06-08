@@ -18,7 +18,7 @@ template="/template/template.xhtml">
       <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add rent </a>
       <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
-      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add cart   </button>
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToProduit()}" data-dismiss="modal">  add cart   </button>
       <h:commandButton id="btn" class="btn btn-outline-secondary" value="product" action="#{usermaroController.navigToProduit()}" />
       
       <h:commandButton id="btny" class="btn btn-outline-secondary" value="Category"   />

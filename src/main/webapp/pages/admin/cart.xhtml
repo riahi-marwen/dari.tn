@@ -24,8 +24,8 @@
       <a class="nav-item nav-link" action="#{UserController.navigToCart()}">add ---</a>
       <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToCart()}" data-dismiss="modal">  add Cart   </button>
       <h:commandButton id="btn" class="btn btn-outline-secondary" value="product" action="#{usermaroController.navigToProduit()}" />
-      <h:commandButton id="rent" class="btn btn-outline-secondary" value="category" action="#{cartController.navigToCategory()}" />
-      <h:commandButton id="buy" class="btn btn-outline-secondary" value="Add cart" action="#{catgControlle.navigToCart()}" /> 
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="category" action="#{catgControlle.navigToCategory()}" />
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="Add cart" action="#{cartController.navigToCart()}" /> 
      
 		
     </div>
@@ -75,7 +75,7 @@
 <td><h:outputText value="OrderStatus"></h:outputText></td>
 <td><h:selectOneMenu value="#{cartController.status}">
 <f:selectItem itemLabel="Choisir le status" itemValue="#{null}" />
-<f:selectItems value="#{cartController.statuss}" />
+<f:selectItems value="#{cartController.status}" />
 </h:selectOneMenu></td>
 </tr>
 

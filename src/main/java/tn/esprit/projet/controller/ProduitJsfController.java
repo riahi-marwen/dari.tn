@@ -35,7 +35,13 @@ public class ProduitJsfController {
 			return produitService.retrieveAllProduit(); 
 		
 	}
-
+    public String  navigToProduit()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/produit.xhtml";
+		return navigateTo;	
+		
+	}
 	public List<Produit> getPts() {
 		return pts;
 	}
