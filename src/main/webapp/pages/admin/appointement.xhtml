@@ -56,7 +56,15 @@
 							<h:outputText value="Action" />
 						</f:facet>
 						<h:commandButton value="Supprimer"
-							action="#{appCo.removeAppointment (z.idAppt)}" />
+							action="#{appCo.removeAppointment ()}" />
+						<h:commandButton value="Afficher" action="#{appCo.displayAppt(z)}" > </h:commandButton>	
+							
+							<p:linkButton outcome="/pages/admin/ajoutApp.xhtml"
+							value="Modifier" icon="pi pi-star"
+							style="margin-right:20px;">
+
+						</p:linkButton>
+							
 						
 							
 					</p:column>

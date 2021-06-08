@@ -62,6 +62,14 @@
 						</f:facet>
 						<h:commandButton value="Supprimer"
 							action="#{livraisonCo.RemoveLivraison(y.idLivraison)}" />
+						<h:commandButton value="Afficher" action="#{livreurCo.DisplayLivraison(y)}" >	
+						   
+  </h:commandButton>
+  <p:linkButton outcome="/pages/admin/ajoutLivraison.xhtml"
+							value="Modifier" icon="pi pi-star"
+							style="margin-right:20px;">
+
+						</p:linkButton>
 						
 							
 					</p:column>

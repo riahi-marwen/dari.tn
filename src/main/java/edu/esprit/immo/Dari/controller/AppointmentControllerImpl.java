@@ -10,6 +10,8 @@ import org.ocpsoft.rewrite.el.ELBeanName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
 import edu.esprit.immo.Dari.entities.Appointment;
 
@@ -121,6 +123,14 @@ public class AppointmentControllerImpl {
 
 	
 	}
+	@Autowired
+	private JavaMailSender javaMailsender ; 
+	
+	
+
+ 
+	
+	
 	
 	
 }

@@ -123,6 +123,7 @@ public class LivraisonControllerImpl {
 		this.setDateLivraison(livraison.getDateLivraison());
 		this.setEtat(livraison.getEtat());
 		this.setAdresse(livraison.getAdresse());
+		this.setLivreurs(livraison.getLivreurs());
 		
 	}
 	public Livraison getSelectedLivraisons() {
@@ -145,6 +146,13 @@ public class LivraisonControllerImpl {
 		this.etat = etat;
 		this.adresse = adresse;
 		this.livreurs = livreurs;
+	}
+	public LivraisonControllerImpl(int idLivraison, Date dateLivraison, Etat etat, Secteur adresse) {
+		super();
+		this.idLivraison = idLivraison;
+		this.dateLivraison = dateLivraison;
+		this.etat = etat;
+		this.adresse = adresse;
 	}
 	 
 	
