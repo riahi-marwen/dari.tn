@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import tn.esprit.projet.modal.Produit;
+import tn.esprit.projet.modal.UploadFile;
 import tn.esprit.projet.service.ProduitService;
 
 @Scope(value = "session")
@@ -25,7 +26,15 @@ public class ProduitJsfController {
     private Date dateCreation;
     private  int quantity;
     private int  test  ; 
-    private List<Produit> propertys; 
+  //  private UploadFile image ;
+   /* public UploadFile getImage() {
+		return image;
+	}
+	public void setImage(UploadFile image) {
+		this.image = image;
+	}*/
+
+	private List<Produit> propertys; 
     public List<Produit> getPropertys() {
     	if (this.getTest()==1)
 		{
@@ -44,9 +53,9 @@ public class ProduitJsfController {
 	}
     
     
-    public String triPrice()
+    public String triNote()
 	{
-		this.setPts(produitService.triPrice());
+		this.setPts(produitService.triNote());
 		String navigateTo = "null";
 		navigateTo = "/pages/admin/filter.xhtml";
 		return navigateTo;			
@@ -81,7 +90,7 @@ public class ProduitJsfController {
     
     public String addProduit()
 	{
-    	produitService.addProduit(new Produit(note, priceProduit,nameProduit,dateCreation,quantity));
+    	produitService.addProduit(new Produit(note, priceProduit,nameProduit,dateCreation,quantity/*,image*/));
 		return "null"; 
 	}
     
@@ -100,6 +109,7 @@ public class ProduitJsfController {
 		this.setPriceProduit(produit.getPriceProduit());
 		this.setQuantity(produit.getQuantity());
 		this.setNote(produit.getNote());
+		//this.setImage(produit.getImage());
 		
 		this.setProduitIdToBeUpdated(produit.getIdProduit());
 		
@@ -109,7 +119,7 @@ public class ProduitJsfController {
 	
 	public void updateProduit()
 	{
-		produitService.addProduit(new Produit(produitIdToBeUpdated,note, priceProduit,nameProduit,dateCreation,quantity));
+		produitService.addProduit(new Produit(produitIdToBeUpdated,note, priceProduit,nameProduit,dateCreation,quantity/*,image*/));
 	}
 	
 

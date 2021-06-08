@@ -64,6 +64,18 @@ public class Produit {
 	}
 
 
+	/*public Produit(Long produitIdToBeUpdated, Double note2, Double priceProduit2, String nameProduit2,
+			Date dateCreation2, int quantity2, UploadFile image2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Produit(Double note2, Double priceProduit2, String nameProduit2, Date dateCreation2, int quantity2,
+			UploadFile image2) {
+		// TODO Auto-generated constructor stub
+	}*/
+
+
 	@Override
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", categoryProduit=" + categoryProduit + ", priceProduit="

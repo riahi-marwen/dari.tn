@@ -20,9 +20,9 @@ public interface ProduitRepository extends CrudRepository<Produit, Long> {
 	@Query("SELECT p FROM Produit p WHERE p.note is not null order by note desc " )
 	List<Produit> getBestProduct();
 	
-	@Query("select p from Produit p order by price DESC ")
+	/*@Query("select f from Produit f order by priceProduit DESC ")
 	public List<Produit> getTripriceProduit();
-
+*/
 	
 
 }

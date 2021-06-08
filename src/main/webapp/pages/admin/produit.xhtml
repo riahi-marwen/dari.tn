@@ -67,6 +67,8 @@
 						<td><h:inputText value="#{produitControlle.note}"></h:inputText></td>
 					</tr>
 					
+					
+					
 					<tr>
 						<td colspan="2"><h:commandButton value="Ajouter product"
 								action="#{produitControlle.addProduit()}" />
@@ -96,7 +98,7 @@
 		<br />
 		<h:panelGroup columns="2">
 			<h:form>
-			<h:commandButton id="recherche2" class="btn btn-outline-secondary" value="tri par prix" action="#{produitControlle.triPrice()}"/>
+			<h:commandButton id="rechhhe2" class="btn btn-outline-secondary" value="tri par note" action="#{produitControlle.triNote()}"/>
 			 <div class="card">
 				<h:dataTable  value="#{produitControlle.propertys}" var="produit"
 					border="1">
@@ -133,6 +135,8 @@
 						</f:facet>
 						<h:outputText value="#{produit.note}" />
 					</h:column>
+					
+					
 						
 
 					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
