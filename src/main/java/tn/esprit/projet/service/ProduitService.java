@@ -20,6 +20,7 @@ public interface ProduitService {
 	public List<Produit> retrieveProduitByNom(String l, Category f);
 	//String AjouterPrduit (Produit  produit);
 	/*public void deleteProduitById(Long idProduit);*/
+	public List<Produit> triPrice();
 	
 	
 	 

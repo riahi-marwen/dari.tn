@@ -42,6 +42,20 @@ public class ProduitJsfController {
 		return navigateTo;	
 		
 	}
+    
+    
+    public String triPrice()
+	{
+		this.setPts(produitService.triPrice());
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/filter.xhtml";
+		return navigateTo;			
+	}
+   
+	
+	
+    
+    
 	public List<Produit> getPts() {
 		return pts;
 	}

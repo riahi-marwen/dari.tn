@@ -71,6 +71,11 @@ public class ProduitServiceImpl implements ProduitService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public List<Produit> triPrice() {
+		
+		return (produitRepository.getTripriceProduit());
+	}
 	
 	
 	
