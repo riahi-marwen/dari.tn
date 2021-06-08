@@ -164,6 +164,7 @@ public class Reclamation implements Serializable {
 		this.interventions = interventions;
 	}
 	
+	
 	public Reclamation(String civilite, String nom, String prenom) {
 		super();
 		this.civilite = civilite;

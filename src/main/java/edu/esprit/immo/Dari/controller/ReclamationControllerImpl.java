@@ -21,6 +21,7 @@ public class ReclamationControllerImpl {
 	 @Autowired
 	 ReclamationService reclamationService; 
 	 public List<Reclamation> reclamations; 
+	 public List<Reclamation> rec; 
 	 public List<Reclamation> getReclamations(){ return reclamationService.retieveAllReclamation(); }
 	 
      public Long id; 
@@ -182,6 +183,13 @@ public class ReclamationControllerImpl {
 
 	/*CRUD -----------*/
 	
+/*	public List<Reclamation>  rechercheParPrix(String a )
+	{
+	return reclamationService.getReclamationByCode(a); 
+
+
+	}
+*/
 	public void addReclamation() {
 		// reclamationService.addOrUpdateReclamation(new Reclamation(id, civilite, nom, prenom, Email, tele, address, codepostal, ville, reclamation, comments));
         try {
@@ -203,9 +211,19 @@ public class ReclamationControllerImpl {
 	 
 	public void updateReclamation()
 	{
-		 reclamationService.addReclamation(new Reclamation(id, civilite, nom, prenom, email, tele, address, codepostal, ville, description, comments));
+		// reclamationService.addReclamation(new Reclamation(id, civilite, nom, prenom, email, tele, address, codepostal, ville, description, comments));
+		// reclamationService.updateReclamation2(civilite, nom, prenom, email, tele, address, codepostal, ville, description, comments);
 	}
 	
+	public void updateReclamation3()
+	{
+		reclamationService.addReclamation(new Reclamation(id, civilite, nom, prenom, email, tele, address, codepostal, ville, description, comments));
+	}
+	
+	public Reclamation updateReclamation4(long id,Reclamation reclam){
+		Reclamation rec= reclamationService.updateReclamation4(id, reclam);
+		return rec;
+	}
 	public void RemoveReclamation(String id)
 	{
 		reclamationService.deleteReclamation(id); 
@@ -251,4 +269,27 @@ public class ReclamationControllerImpl {
         return null;
      }    
 
+	 
+		//---------recherche------------
+
+	 public List<Reclamation> getRec() {
+		return rec;
+	}
+
+
+
+	public void setRec(List<Reclamation> rec) {
+		this.rec = rec;
+	}
+
+
+
+	public String RechercheParNom (String codepostal)
+	 {
+		 String navigateTo="null"; 
+	     this.setRec(reclamationService.getReclamationByCode(codepostal)); 
+		 return  navigateTo="/pages/user/search.xhtml" ; 
+		 
+		 
+	 }; 
 }

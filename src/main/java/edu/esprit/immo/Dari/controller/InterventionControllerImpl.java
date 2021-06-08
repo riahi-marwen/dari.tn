@@ -153,7 +153,7 @@ public class InterventionControllerImpl {
 	}
 
 	
-	/*CRUD -------------------------------------------------*/
+	/*CRUD -----------*/
 
 
 	public void addIntervention() {
@@ -161,6 +161,7 @@ public class InterventionControllerImpl {
 	}
 
 	
+	 
 	public void updateIntervention()
 	{
 		 interventionService.addIntervention(new Intervention(id_inter, titre, statut, service, reclamations));

@@ -67,7 +67,25 @@
 							<td colspan="2"><h:commandButton value="Ajouter reclamtion"
 									action="#{reclamationController.addReclamation()}" /> <h:commandButton
 									value=" Mettre reclamation A jour "
-									action="#{reclamationController.updateReclamation()}" /></td>
+									action="#{reclamationController.updateReclamation3()}" /></td>
+						</tr>
+					</table>
+				</h:form>
+			</h:panelGroup>
+			
+		 <!-- ************Search ************************************************************************ -->
+			
+			<h:panelGroup columns="2">
+				<h:form>
+					<table>
+						<tr>
+							<td><h:outputText value="search"></h:outputText></td>
+							<td><h:inputText value="#{reclamationController.codepostal}"></h:inputText></td>
+						</tr>
+						<tr>
+							<td colspan="2"><h:commandButton value="chercher reclamtion"
+									action="#{reclamationController.RechercheParNom(reclamationController.codepostal)}" />
+							</td>
 						</tr>
 					</table>
 				</h:form>

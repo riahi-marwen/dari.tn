@@ -57,5 +57,17 @@ public class ReclamationRestController {
 	public Reclamation updateReclamation(@RequestBody Reclamation rec) {
 	return reclamationService.updateReclamation(rec);
 	}
+	
+	
+/*	@PutMapping( "/updateReclamation/{id}/{ncivilite}/{nnom}/{nprenom}/{nemail}/{ntele}/{naddress}/{ncodepostal}/{nville}/{ndescription}/{ncomments}/")
+	@ResponseBody
+	public void updateReclamation(@PathVariable("id") String id,
+			@PathVariable("ncivilite") String civilite, @PathVariable("nnom") String nom,
+			@PathVariable("nprenom") String prenom,@PathVariable("nemail") String email,@PathVariable("ntele") String tele,
+			@PathVariable("naddress") String address,@PathVariable("ncodepostal") String codepostal,
+			@PathVariable("nville") String ville,@PathVariable("ndescription") String description,
+			@PathVariable("ncomments") String comments) {
+	 reclamationService.updateReclamation(id,civilite, nom, prenom, email, tele, address, codepostal, ville, description, comments);
+	}*/
 }
 

@@ -35,9 +35,12 @@
 						<td><h:selectOneMenu
 								value="#{interventionController.reclamations}">
 								<f:selectItem itemLabel="Choisir reclamation"
-									itemValue="#{null}" />
-								<f:selectItems value="#{interventionController.reclamations}" />
+									itemValue="#{interventionController.reclamations.id}" />
+								<f:selectItems value="#{interventionController.reclamations.id}" />
 							</h:selectOneMenu></td>
+							
+  
+  
 					</tr>
 					<tr>
 						<td colspan="2"><h:commandButton value="Ajouter"
