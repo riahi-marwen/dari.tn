@@ -20,13 +20,15 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add product </a>
+      <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add rent </a>
       <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
-      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToCategory()}" data-dismiss="modal">  add cart   </button>
-      <h:commandButton id="btn" class="btn btn-outline-secondary" value="product" action="#{usermaroController.navigToProduit()}" />
-      <h:commandButton id="rent" class="btn btn-outline-secondary" value="category" action="#{catgControlle.navigToCategory()}" />
-      <h:commandButton id="buy" class="btn btn-outline-secondary" value="Add cart" action="#{cartController.navigToCart()}" /> 
-     
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add rent   </button>
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="property" action="#{employeController.navigToProperty()}" />
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{rentControlle.navigToRent()}" />
+      <h:commandButton id="btny" class="btn btn-outline-secondary" value="list of rent"   />
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{rentControlle.navigToBuy()}" /> 
+      <h:commandButton id="recherche" class="btn btn-outline-secondary" value="recherche" action="#{propertyControlle.rechercheProperty()}"/> 
+      
 		
     </div>
   </div>
@@ -98,9 +100,8 @@
 			<h:form>
 			
 			 <div class="card">
-				<h:dataTable  value="#{produitControlle.propertys}" var="produit"
+				<h:dataTable value="#{produitControlle.propertys}" var="produit"
 					border="1">
-					
 					<h:column >
 						<f:facet name="header">
 							<h:outputText value="name Prouct" />

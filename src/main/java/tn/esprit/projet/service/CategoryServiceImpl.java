@@ -15,9 +15,9 @@ public class CategoryServiceImpl implements CategoryService {
 	CategoryRepository categoryRepository;
 
 	@Override
-	public Category addCategory(Category category) {
+	public String addCategory(Category category) {
 		categoryRepository.save(category) ;
-		return category;
+		return "category";
 	}
 	@Override
 	public String DeleteCategory(long id) {

@@ -34,6 +34,25 @@ public class Payement {
 	
 	private String referenceExterne;
 	
+	
+	
+	
+	
+	public Payement() {
+		super();
+		
+	}
+	
+	public Payement(Date createDate2, Integer quantity2, Produit product2, User user2, Double amount2, Date createDate3,
+			Integer quantity3, PayementType payementType2, OrderStatus status2, String referenceExterne2) {
+		// TODO Auto-generated constructor stub
+	}
+	public Payement(Long cartIdToBeUpdated, Date createDate2, Integer quantity2, Produit product2, User user2,
+			Double amount2, Date createDate3, Integer quantity3, PayementType payementType2, OrderStatus status2,
+			String referenceExterne2) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Date getCreateDate() {
 		return createDate;
 	}

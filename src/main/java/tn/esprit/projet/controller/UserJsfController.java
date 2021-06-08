@@ -93,12 +93,12 @@ public class UserJsfController {
 	}
 	
 	/* methode navigate*/
-	/*public String navigToProduit()
+	/*public String navigToCart()
 	{
 		String navigateTo = "null";
-		navigateTo = "/pages/admin/product.xhtml";
+		navigateTo = "/pages/admin/cart.xhtml";
 		return navigateTo;	
-	}
+	}*/
 	public String  navigToCategory()
 	{
 		String navigateTo = "null";

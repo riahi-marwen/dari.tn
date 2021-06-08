@@ -31,9 +31,9 @@ public class CategoryController {
 	}
 	@PostMapping("/add-Category")
     @ResponseBody
-    public Category addCategory(@RequestBody Category a) {
-		Category category = categoryService.addCategory(a);
-        return category ; }
+    public String addCategory(@RequestBody Category a) {
+		String category = categoryService.addCategory(a);
+        return "category" ; }
 	@DeleteMapping("/remove-category/{category-id}")
     @ResponseBody
     public void removeCategory(@PathVariable("category-id")  long categoryId) {

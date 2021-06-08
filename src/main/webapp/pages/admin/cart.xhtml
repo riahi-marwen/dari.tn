@@ -1,0 +1,199 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="Accueil" />
+
+	<ui:define name="content">
+
+<!-- navbaaaaar  -->
+
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DARI.TN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/pages/admin/cart.xhtml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"  onclick="#{UserController.navigToCart()}"  href="#">add cart </a>
+      <a class="nav-item nav-link" action="#{UserController.navigToCart()}">add ---</a>
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToCart()}" data-dismiss="modal">  add Cart   </button>
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="product" action="#{usermaroController.navigToProduit()}" />
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="category" action="#{cartController.navigToCategory()}" />
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="Add cart" action="#{catgControlle.navigToCart()}" /> 
+     
+		
+    </div>
+  </div>
+</nav>
+
+</h:form>
+
+<!-- END navbaaaar  -->
+
+<h:panelGroup columns="2">
+			<h:form>
+				
+				<table>
+					<tr>
+						<td><h:outputText value="User"></h:outputText></td>
+						<td><h:inputText value="#{cartController.user}"></h:inputText></td>
+					</tr>	
+					<tr>
+						<td><h:outputText value="Product"></h:outputText></td>
+						<td><h:inputText value="#{cartController.product}"></h:inputText></td>
+					</tr>					
+					
+					<tr>
+						<td><h:outputText value="referenceExterne"></h:outputText></td>
+						<td><h:inputText value="#{cartController.referenceExterne}"></h:inputText></td>
+					</tr>
+					
+					
+					
+					<tr>
+						<td><h:outputText value="Date_Creation"></h:outputText></td>
+						<td><h:inputText type="date" value="#{cartController.createDate}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Quantity"></h:outputText></td>
+						<td><h:inputText value="#{cartController.quantity}"></h:inputText></td>
+					</tr>					
+					<tr>
+						<td><h:outputText value="Amount"></h:outputText></td>
+						<td><h:inputText value="#{cartController.amount}"></h:inputText></td>
+					</tr>
+					
+					<tr>
+<td><h:outputText value="OrderStatus"></h:outputText></td>
+<td><h:selectOneMenu value="#{cartController.status}">
+<f:selectItem itemLabel="Choisir le status" itemValue="#{null}" />
+<f:selectItems value="#{cartController.statuss}" />
+</h:selectOneMenu></td>
+</tr>
+
+<tr>
+<td><h:outputText value="PayementType"></h:outputText></td>
+<td><h:selectOneMenu value="#{cartController.payementType}">
+<f:selectItem itemLabel="Choisir type payement" itemValue="#{null}" />
+<f:selectItems value="#{cartController.payementType}" />
+</h:selectOneMenu></td>
+</tr>
+					
+					<tr>
+						<td colspan="2"><h:commandButton value="ADD TO CART"
+								action="#{cartController.addCart()}" />
+								 <h:commandButton value=" Update CART"
+								 action="#{cartController.updatecart()}"/>
+								 </td>
+					</tr>
+
+				</table>
+			</h:form>
+		</h:panelGroup>
+	
+		
+		
+
+
+
+
+
+
+		<br />
+		
+
+
+
+		<!-- BEGIN : TP3 JSF List Employes -->
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+			
+			 <div class="card">
+				<h:dataTable  value="#{cartController.pay}" var="produit"
+					border="1">
+					
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="User" />
+						</f:facet>
+						<h:outputText value="#{payement.user}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Product" />
+						</f:facet>
+						<h:outputText value="#{payement.product}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="referenceExterne" />
+						</f:facet>
+						<h:outputText value="#{payement.referenceExterne}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Date_Creation" />
+						</f:facet>
+						<h:outputText value="#{payement.createDate}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Quantity" />
+						</f:facet>
+						<h:outputText value="#{payement.quantity}" />
+					</h:column>
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Amount" />
+						</f:facet>
+						<h:outputText value="#{payement.amount}" />
+					</h:column>
+						
+
+					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
+					<!-- BEGIN :  TP4 JSF Modifier Employé -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							
+							value="Supprimer"
+							action="#{cartController.removeProduit(payement.id)}" />
+							
+						<h:commandButton
+							
+							value="Afficher" 
+							action="#{cartController.displayProduit(payement)}"/>
+						
+					</h:column>
+					
+		
+					<!-- END :  TP4 JSF Supprimer Employé -->
+					<!-- END :  TP4 JSF Modifer Employé -->
+
+				</h:dataTable>
+			 </div>
+			</h:form>
+		</h:panelGroup>
+		<!-- END :  TP3 JSF List Employes -->
+
+	</ui:define>
+	
+	
+	
+	
+
+</ui:composition> 

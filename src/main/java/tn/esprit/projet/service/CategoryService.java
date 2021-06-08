@@ -6,7 +6,7 @@ import tn.esprit.projet.modal.Category;
 
 public interface CategoryService {
 
-	Category addCategory(Category category);
+	String addCategory(Category category);
 
 	String DeleteCategory(long categoryId);
 
