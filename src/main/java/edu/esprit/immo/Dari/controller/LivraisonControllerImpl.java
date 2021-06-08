@@ -95,11 +95,18 @@ public class LivraisonControllerImpl {
 	
 	 
 	public void addLivraison () {
+	Livraison liv =new Livraison(idLivraison,dateLivraison,etat,null, adresse, livreurs);
+		if (livraisonService.affectationAutoLivreur(liv.getAdresse())!= null)
+		{
+			liv.setLivreurs(livraisonService.affectationAutoLivreur(liv.getAdresse()));
+			
+		}
+
 		
-		livraisonService.addLivraison(new Livraison(idLivraison,dateLivraison,etat,null, adresse, livreurs));
+		livraisonService.addLivraison(liv);
 	}
 	
-	public void updateLivraison( ) {
+	public void updateLivraison() {
 		
 		livraisonService.addLivraison(new Livraison(idLivraison,dateLivraison,etat,null, adresse, livreurs));
 
@@ -127,6 +134,19 @@ public class LivraisonControllerImpl {
 	public void setLivraisons(List<Livraison> livraisons) {
 		this.livraisons = livraisons;
 	}
+	
+	
+	public Secteur[] getAdresses() { return Secteur.values(); }
+	public Etat[] getEtats() { return Etat.values();}
+	public LivraisonControllerImpl(int idLivraison, Date dateLivraison, Etat etat, Secteur adresse, Livreur livreurs) {
+		super();
+		this.idLivraison = idLivraison;
+		this.dateLivraison = dateLivraison;
+		this.etat = etat;
+		this.adresse = adresse;
+		this.livreurs = livreurs;
+	}
+	 
 	
 	
 	

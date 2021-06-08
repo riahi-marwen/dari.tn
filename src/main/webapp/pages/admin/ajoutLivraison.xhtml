@@ -7,10 +7,45 @@
 	<ui:param name="page_name" value="Rendez-vous" />
 
 	<ui:define name="content">
+<h:panelGroup columns="2">
+			<h:form>
+				<table>
 
+					<tr>
+						<td><h:outputText value="Date de Livraison "></h:outputText></td>
+						<td><h:inputText  type="date" value="#{livraisonCo.dateLivraison}">
+						<f:convertDateTime pattern="dd-MM-yyyy"/>
+						</h:inputText></td>
+					</tr>
+					
+					<tr>
+						<td><h:outputText value="Secteur"></h:outputText></td>
+						<td><h:selectOneMenu value="#{livraisonCo.adresse}">
+								<f:selectItem itemLabel="Choisir l'adresse de la livraison "
+									itemValue="#{null}" />
+								<f:selectItems value="#{livraisonCo.adresses}" />
+							</h:selectOneMenu></td>
+					</tr>
+					
+<tr>
+						<td><h:outputText value="Etat"></h:outputText></td>
+						<td><h:selectOneMenu value="#{livraisonCo.etat}">
+								<f:selectItem itemLabel="identidier l'etat de la livraison"
+									itemValue="#{null}" />
+								<f:selectItems value="#{livraisonCo.etats}" />
+							</h:selectOneMenu></td>
+					</tr>
 
-		<p:commandButton type="button" value="RDV" styleClass="rounded-button" />
-		
+					<tr>
+						<td colspan="2"><h:commandButton value="Ajouter"
+								action="#{livraisonCo.addLivraison}" /> <h:commandButton
+								value=" Mettre reclamation A jour "
+								action="#{livraisonCo.updateLivraison()}" />
+						</td>
+					</tr>
+				</table>
+			</h:form>
+		</h:panelGroup>
 	</ui:define>
 
 </ui:composition>
