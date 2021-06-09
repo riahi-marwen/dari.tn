@@ -47,7 +47,6 @@ public class Produit {
 		
 	}
 
-
 	public Produit(Double note, Double priceProduit, String nameProduit, Date dateCreation, int quantity) {
 		super();
 		this.note = note;
@@ -57,23 +56,11 @@ public class Produit {
 		this.quantity = quantity;
 	}
 
-
 	public Produit(Long produitIdToBeUpdated, Double note2, Double priceProduit2, String nameProduit2,
 			Date dateCreation2, int quantity2) {
 		// TODO Auto-generated constructor stub
 	}
 
-
-	/*public Produit(Long produitIdToBeUpdated, Double note2, Double priceProduit2, String nameProduit2,
-			Date dateCreation2, int quantity2, UploadFile image2) {
-		// TODO Auto-generated constructor stub
-	}
-
-
-	public Produit(Double note2, Double priceProduit2, String nameProduit2, Date dateCreation2, int quantity2,
-			UploadFile image2) {
-		// TODO Auto-generated constructor stub
-	}*/
 
 
 	@Override

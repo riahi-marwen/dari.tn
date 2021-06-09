@@ -76,12 +76,25 @@ public class ProduitServiceImpl implements ProduitService {
 		
 		return (produitRepository.getTripriceProduit());
 	}*/
-	@Override
-	public List<Produit> triNote() {
+	/*@Override
+	public List<Produit> getBestProduct(){
 		
 		return (produitRepository.getBestProduct());
-	}
-	
+	}*/
+	/*@Override
+	public List<Produit> getProduitByName(String nameProduit) {
+		
+		return (produitRepository.Search2(nameProduit));
+	}*/
+	/*@Override
+	public List<Produit> getProduitByName(String nameProduit) {
+		
+		return produitRepository.getProduitByCode(nameProduit);
+	}*/
+	/*@Override
+	public List<Produit> triNote() {
+	return(produitRepository.getBestProduct());
+	}*/
 	
 	
 

@@ -12,7 +12,7 @@ public interface ProduitService {
 
 	public String addProduit(Produit produit);
 	public String DeleteProduit(long id);
-	public String updateProduit(Produit produit);
+	public	String updateProduit(Produit produit);
 	public List<Produit> retrieveAllProduit();
 	public UploadFile saveImage(UploadFile p);
 	public Produit findById(long id);
@@ -20,8 +20,8 @@ public interface ProduitService {
 	public List<Produit> retrieveProduitByNom(String l, Category f);
 	//String AjouterPrduit (Produit  produit);
 	/*public void deleteProduitById(Long idProduit);*/
-	public List<Produit> triNote();
-	
+	//public List<Produit> triNote();
+	//public List<Produit> getProduitByName(String nameProduit);
 	
 	 
 }

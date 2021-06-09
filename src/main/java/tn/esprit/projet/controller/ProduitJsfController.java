@@ -20,74 +20,48 @@ import tn.esprit.projet.service.ProduitService;
 public class ProduitJsfController {
 	@Autowired
 	ProduitService produitService;
+	
 	private Double note;
     private Double priceProduit;
     private String nameProduit;
     private Date dateCreation;
     private  int quantity;
     private int  test  ; 
-  //  private UploadFile image ;
+  // private UploadFile image ;
    /* public UploadFile getImage() {
 		return image;
 	}
 	public void setImage(UploadFile image) {
 		this.image = image;
 	}*/
-
+    private Long produitIdToBeUpdated;
+    private List<Produit> pts;
+    
 	private List<Produit> propertys; 
-    public List<Produit> getPropertys() {
-    	if (this.getTest()==1)
-		{
-			this.getPts(); 
-		}
-	
-			return produitService.retrieveAllProduit(); 
-		
-	}
-    public String  navigToProduit()
-	{
-		String navigateTo = "null";
-		navigateTo = "/pages/admin/produit.xhtml";
-		return navigateTo;	
-		
-	}
+   
     
+   /* public String RechercheParNom (String nameProduit)
+	 {
+		 String navigateTo="null"; 
+	     this.setPts(produitService.getProduitByName(nameProduit)); 
+		 return  navigateTo="/pages/admin/recherche.xhtml" ; 
+		 
+		 
+	 }*/
     
-    public String triNote()
+   
+   
+   /* public String triNote()
 	{
 		this.setPts(produitService.triNote());
 		String navigateTo = "null";
 		navigateTo = "/pages/admin/filter.xhtml";
 		return navigateTo;			
-	}
+	}*/
    
 	
+
 	
-    
-    
-	public List<Produit> getPts() {
-		return pts;
-	}
-
-	public void setPts(List<Produit> pts) {
-		this.pts = pts;
-	}
-
-	public void setPropertys(List<Produit> propertys) {
-		this.propertys = propertys;
-	}
-
-	public int getTest() {
-		return test;
-	}
-
-	public void setTest(int test) {
-		this.test = test;
-	}
-
-	private Long produitIdToBeUpdated;
-    private List<Produit> pts;
-    
     public String addProduit()
 	{
     	produitService.addProduit(new Produit(note, priceProduit,nameProduit,dateCreation,quantity/*,image*/));
@@ -126,6 +100,7 @@ public class ProduitJsfController {
     
     
 
+	
 	public ProduitService getProduitService() {
 		return produitService;
 	}
@@ -174,8 +149,13 @@ public class ProduitJsfController {
 		this.quantity = quantity;
 	}
 
-	
-	
+	public int getTest() {
+		return test;
+	}
+
+	public void setTest(int test) {
+		this.test = test;
+	}
 
 	public Long getProduitIdToBeUpdated() {
 		return produitIdToBeUpdated;
@@ -185,7 +165,35 @@ public class ProduitJsfController {
 		this.produitIdToBeUpdated = produitIdToBeUpdated;
 	}
 
+	public List<Produit> getPts() {
+		return pts;
+	}
+
+	public void setPts(List<Produit> pts) {
+		this.pts = pts;
+	}
+
+	public List<Produit> getPropertys() {
+		if (this.getTest()==1)
+		{
+			this.getPts(); 
+		}
 	
+			return produitService.retrieveAllProduit(); 
+		
+	}
+
+	public void setPropertys(List<Produit> propertys) {
+		this.propertys = propertys;
+	}
+
+	public String  navigToProduit()
+	{
+		String navigateTo = "null";
+		navigateTo = "/pages/admin/produit.xhtml";
+		return navigateTo;	
+		
+	}
     
 
 }

@@ -50,7 +50,7 @@
 						<td><h:inputText value="#{produitControlle.priceProduit}"></h:inputText></td>
 					</tr>
 					
-					
+				
 					
 					<tr>
 						<td><h:outputText value="Date_Creation"></h:outputText></td>
@@ -66,7 +66,6 @@
 						<td><h:outputText value="Note"></h:outputText></td>
 						<td><h:inputText value="#{produitControlle.note}"></h:inputText></td>
 					</tr>
-					
 					
 					
 					<tr>
@@ -98,7 +97,6 @@
 		<br />
 		<h:panelGroup columns="2">
 			<h:form>
-			<h:commandButton id="rechhhe2" class="btn btn-outline-secondary" value="tri par note" action="#{produitControlle.triNote()}"/>
 			 <div class="card">
 				<h:dataTable  value="#{produitControlle.propertys}" var="produit"
 					border="1">
@@ -116,6 +114,7 @@
 						</f:facet>
 						<h:outputText value="#{produit.priceProduit}" />
 					</h:column>
+					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Date_Creation" />
