@@ -12,6 +12,12 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import com.sun.xml.fastinfoset.sax.Properties;
+
 @Entity
 public class Appointment implements Serializable{
 
@@ -111,6 +117,7 @@ public class Appointment implements Serializable{
 		this.emailRdv = emailRdv;
 	}
 	
+
 	
 	
 	

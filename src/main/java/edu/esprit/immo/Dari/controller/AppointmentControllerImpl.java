@@ -123,8 +123,7 @@ public class AppointmentControllerImpl {
 
 	
 	}
-	@Autowired
-	private JavaMailSender javaMailsender ; 
+
 	
 	
 

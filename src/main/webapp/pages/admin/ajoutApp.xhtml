@@ -33,7 +33,7 @@
 						<td><div class="col-md-6 form-group">
                 
                 <h:inputText class="form-control"  type="time" value="#{appCo.time}">
-                 <f:convertDateTime pattern="HH:mm"/>
+<f:convertDateTime pattern="HH:mm:ss" timeZone="GMT+1" />
                 </h:inputText>
             </div>
 						
@@ -52,7 +52,7 @@
 					<tr>
 						<td colspan="2"><h:commandButton value="Ajouter"
 								action="#{appCo.addAppointment()}" /> <h:commandButton
-								value=" Mettre reclamation A jour "
+								value=" Mettre RDV A jour "
 								action="#appCo.updateAppointmen}" />
 						</td>
 					</tr>
