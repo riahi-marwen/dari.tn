@@ -1,0 +1,205 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/template/template.xhtml">
+
+	<ui:param name="page_name" value="statistique" />
+
+	<ui:define name="content">
+
+
+
+<h:form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">DARI.TN</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/pages/admin/rent.xhtml">Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"  onclick="#{UserController.navigToRent()}"  href="#">add rent </a>
+      <a class="nav-item nav-link" action="#{UserController.navigToRent()}">add ---</a>
+      <button type="button" class="btn btn-outline-secondary" onclick="#{UserController.navigToRent()}" data-dismiss="modal">  add rent   </button>
+      <h:commandButton id="btn" class="btn btn-outline-secondary" value="property" action="#{employeController.navigToProperty()}" />
+      <h:commandButton id="rent" class="btn btn-outline-secondary" value="rent" action="#{statistiqueControlle.navigToRent()}" />
+      <h:commandButton id="btny" class="btn btn-outline-secondary" value="list of rent"   />
+      <h:commandButton id="buy" class="btn btn-outline-secondary" value="list of buyer" action="#{statistiqueControlle.navigToBuy()}" /> 
+      <h:commandButton id="buyy" class="btn btn-outline-secondary" value=" statistique of rent " action="#{statistiqueControlle.rechercheParPrix(10)}" /> 
+      <h:commandButton id="recherche" class="btn btn-outline-secondary" value="recherche" action="#{fonctionControlle.recherchee()}"/> 
+      
+      	
+		
+    </div>
+  </div>
+</nav>
+
+</h:form>
+
+<!-- END :  navbar -->
+
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<br>
+</br>
+<!-- END :  recherche  -->
+<h:panelGroup columns="2" class="center">
+			<h:form>
+			
+			
+				
+				<table class="center">
+					
+					
+					<tr>
+						<td><h:outputText value="  average rent per year  "></h:outputText></td>
+						<td>
+						<h:inputText  type="date" value="#{statistiqueControlle.year}">
+						</h:inputText>
+						
+						</td>
+					</tr>				
+
+					<tr>
+						<td colspan="2">
+						
+						<h:commandButton value="moyenne par année" action="#{statistiqueControlle.Average(statistiqueControlle.year)}" />
+						<h:outputText value="#{statistiqueControlle.averageAN}"></h:outputText>
+							 
+						</td>
+					</tr>
+					
+					
+					
+					
+					
+		          <tr>
+						<td><h:outputText value="  average rent per year , month  "></h:outputText></td>
+						<td>
+						<h:outputText value=" year"></h:outputText>
+						<h:inputText  value="#{statistiqueControlle.year}">		</h:inputText>
+						</td>
+						<td>
+						<h:outputText value="month"></h:outputText>
+						<h:inputText  value="#{statistiqueControlle.year}">	    </h:inputText>
+						</td>
+					</tr>				
+
+					<tr>
+						<td colspan="2">
+						
+						<h:commandButton value="moyenne par année" action="#{statistiqueControlle.Average(statistiqueControlle.year)}" />
+						<h:outputText value="#{statistiqueControlle.averageAN}"></h:outputText>
+							 
+						</td>
+					</tr>
+					
+					
+
+				</table>
+			</h:form>
+		</h:panelGroup>
+ 
+
+
+
+			
+		
+
+
+
+
+
+
+
+		<!-- BEGIN : TP3 JSF List Employes -->
+		<br />
+		<h:panelGroup columns="2">
+			<h:form>
+			
+			 <div class="card">
+				<h:dataTable value="#{statistiqueControlle.rents}" var="property"
+					border="1">
+					<h:column >
+						<f:facet name="header">
+							<h:outputText value="date end " />
+							
+						</f:facet>
+						<h:outputText value="#{property.date_end}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="date start" />
+						</f:facet>
+						<h:outputText value="#{property.date_start}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="name owner" />
+						</f:facet>
+						<h:outputText value="#{property.name_owner}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="name renter" />
+						</f:facet>
+						<h:outputText value="#{property.name_renter}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value=" price" />
+						</f:facet>
+						<h:outputText value="#{property.price}" />
+					</h:column>
+		
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="type rent" />
+						</f:facet>
+						<h:outputText value="#{property.type_rent}" />
+					</h:column>
+								
+
+					<!-- BEGIN :  TP4 JSF Supprimer Employé -->
+					<!-- BEGIN :  TP4 JSF Modifier Employé -->
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Action" />
+						</f:facet>
+						<h:commandButton
+							
+							value="Supprimer"
+							action="#{statistiqueControlle.RemoveRent(property.rentId)}" />
+							
+						<h:commandButton
+							
+							value="Afficher" 
+							action="#{statistiqueControlle.DisplayRent(property)}"/>
+						
+					</h:column>
+					
+		
+					<!-- END :  TP4 JSF Supprimer Employé -->
+					<!-- END :  TP4 JSF Modifer Employé -->
+
+				</h:dataTable>
+			 </div>
+			</h:form>
+		</h:panelGroup>
+		<!-- END :  TP3 JSF List Employes -->
+
+	</ui:define>
+	
+	
+	
+	
+
+</ui:composition>
